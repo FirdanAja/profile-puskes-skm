@@ -361,7 +361,7 @@ export default function Navbar({ onOpenEmergency, forceScrolled = false }) {
           : 'bg-white/5 backdrop-blur-sm border-b border-white/10 shadow-none'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-20">
         <div className="flex items-center justify-between h-16 lg:h-[72px]">
 
           {/* Logo */}

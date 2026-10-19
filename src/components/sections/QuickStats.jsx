@@ -11,7 +11,7 @@ export default function QuickStats() {
   ];
 
   return (
-    <section className="relative -mt-10 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative -mt-10 z-20 max-w-7xl mx-auto px-20">
       <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-100">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
           {puskesmasInfo.stats.map((stat, idx) => (

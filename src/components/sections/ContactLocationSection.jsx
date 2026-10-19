@@ -23,7 +23,7 @@ export default function ContactLocationSection({ onOpenEmergency }) {
 
   return (
     <section id="kontak" className="py-20 lg:py-28 bg-slate-50 border-t border-slate-200/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-20">
         
         <SectionTitle
           badge="Hubungi & Kunjungi"

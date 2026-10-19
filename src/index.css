@@ -16,43 +16,44 @@
   }
 }
 
-/* ===== ANIMATIONS ===== */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ===== SCROLL REVEAL ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.03); }
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-}
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-24px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-@keyframes slideInRight {
-  from { opacity: 0; transform: translateX(24px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-@keyframes scaleIn {
+@keyframes scaleUp {
   from { opacity: 0; transform: scale(0.92); }
-  to { opacity: 1; transform: scale(1); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
-.animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
-.animate-fade-in { animation: fadeIn 0.5s ease forwards; }
-.animate-pulse-glow { animation: pulseGlow 3s infinite ease-in-out; }
-.animate-float { animation: float 3s infinite ease-in-out; }
-.animate-slide-in-left { animation: slideInLeft 0.6s ease forwards; }
-.animate-slide-in-right { animation: slideInRight 0.6s ease forwards; }
-.animate-scale-in { animation: scaleIn 0.5s ease forwards; }
+.reveal        { opacity: 0; }
+.reveal.in-view-up    { animation: fadeUp    0.65s cubic-bezier(0.22,1,0.36,1) forwards; }
+.reveal.in-view-left  { animation: fadeLeft  0.65s cubic-bezier(0.22,1,0.36,1) forwards; }
+.reveal.in-view-right { animation: fadeRight 0.65s cubic-bezier(0.22,1,0.36,1) forwards; }
+.reveal.in-view-fade  { animation: fadeIn    0.65s ease forwards; }
+.reveal.in-view-scale { animation: scaleUp   0.65s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+/* delay helpers */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+
 
 /* ===== HERO SLIDESHOW ZOOM OUT ===== */
 @keyframes heroZoom {

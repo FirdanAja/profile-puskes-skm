@@ -33,7 +33,7 @@ export default function DoctorsSchedule() {
 
   return (
     <section id="jadwal-dokter" className="py-16 lg:py-20 bg-gray-50 border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-20">
         
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
