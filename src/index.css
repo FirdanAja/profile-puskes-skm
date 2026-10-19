@@ -1,0 +1,141 @@
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  *, *::before, *::after {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  }
+  body {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    color: #1e293b;
+    background-color: #f8fafc;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+.animate-fade-in { animation: fadeIn 0.5s ease forwards; }
+.animate-pulse-glow { animation: pulseGlow 3s infinite ease-in-out; }
+.animate-float { animation: float 3s infinite ease-in-out; }
+.animate-slide-in-left { animation: slideInLeft 0.6s ease forwards; }
+.animate-slide-in-right { animation: slideInRight 0.6s ease forwards; }
+.animate-scale-in { animation: scaleIn 0.5s ease forwards; }
+
+/* ===== HERO SLIDESHOW ZOOM OUT ===== */
+@keyframes heroZoom {
+  0%   { transform: scale(1.12); }
+  100% { transform: scale(1.0);  }
+}
+/* Animasi jalan terus (infinite alternate) → tidak pernah berhenti, tidak ada hentakan */
+.hero-zoom-img {
+  animation: heroZoom 9s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* ===== GLASS MORPHISM ===== */
+.glass {
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.glass-dark {
+  background: rgba(15,30,25,0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+/* ===== GRADIENT TEXT ===== */
+.text-gradient-green {
+  background: linear-gradient(135deg, #059669, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== SECTION TRANSITIONS ===== */
+section { scroll-margin-top: 80px; }
+
+/* ===== ORG CHART ===== */
+.org-tree { display: flex; flex-direction: column; align-items: center; gap: 0; }
+.org-connector-vertical {
+  width: 2px;
+  height: 28px;
+  background: #059669;
+  margin: 0 auto;
+}
+.org-connector-h {
+  height: 2px;
+  background: #059669;
+  flex: 1;
+}
+
+/* ===== HERO BUILDING ===== */
+.building-illustration {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 40%, #6ee7b7 100%);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== NAV ACTIVE ===== */
+.nav-link-active {
+  color: #059669 !important;
+  border-bottom: 2px solid #059669;
+}
+
+/* ===== CARD HOVER ===== */
+.card-hover {
+  transition: all 0.25s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(5, 150, 105, 0.18);
+}
+
+/* ===== GALLERY IMAGE ===== */
+.gallery-img {
+  transition: transform 0.35s ease;
+  overflow: hidden;
+}
+.gallery-img:hover img {
+  transform: scale(1.08);
+}
