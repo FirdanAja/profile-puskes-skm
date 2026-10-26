@@ -54,15 +54,14 @@ const navLinks = [
     label: "Profil",
     href: "#profil",
     dropdown: [
-      { label: "Tugas Pokok dan Fungsi", href: "#profil" },
+      { label: "Tugas Pokok dan Fungsi", href: "#tupoksi" },
       { label: "Visi Misi", href: "#profil" },
       {
         label: "Struktur Organisasi",
         href: "#/org",
       },
-      
+      { label: "Pegawai", href: "#pegawai" },
       { label: "Maklumat Pelayanan", href: "#profil" },
-      { label: "Pegawai", href: "#profil" },
     ],
   },
   {
@@ -72,13 +71,13 @@ const navLinks = [
       { label: "Jenis Pelayanan", href: "#layanan" },
       {
         label: "Standar Pelayanan",
-        href: "#layanan",
+        href: "#standar-pelayanan",
         sub: [
-          { label: "Klaster 1 ", href: "#layanan" },
-          { label: "Klaster 2 ", href: "#layanan" },
-          { label: "Klaster 3 ", href: "#layanan" },
-          { label: "Klaster 4 ", href: "#layanan" },
-          { label: "Lintas Klaster", href: "#layanan" },
+          { label: "Klaster 1 - Manajemen", href: "#standar-pelayanan" },
+          { label: "Klaster 2 - Ibu dan Anak", href: "#standar-pelayanan" },
+          { label: "Klaster 3 - Dewasa & Lansia", href: "#standar-pelayanan" },
+          { label: "Klaster 4 - Penyakit Menular", href: "#standar-pelayanan" },
+          { label: "Lintas Klaster", href: "#standar-pelayanan" },
         ],
       },
     ],
@@ -88,6 +87,7 @@ const navLinks = [
     href: "#alur-pelayanan",
     dropdown: [
       { label: "Alur Pelayanan", href: "#alur-pelayanan" },
+      { label: "Wilayah Kerja", href: "#wilayah-kerja" },
       { label: "Jadwal Dokter", href: "#jadwal-dokter" },
       { label: "Berita & Artikel", href: "#edukasi" },
       { label: "FAQ", href: "#faq" },

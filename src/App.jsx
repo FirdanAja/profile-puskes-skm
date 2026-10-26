@@ -7,6 +7,11 @@ import HeroSection from './components/sections/HeroSection';
 import ServicesSection from './components/sections/ServicesSection';
 import AboutSection from './components/sections/AboutSection';
 import OrgSection from './components/sections/OrgSection';
+import TupoksiSection from './components/sections/TupoksiSection';
+import PegawaiSection from './components/sections/PegawaiSection';
+import AlurPelayananSection from './components/sections/AlurPelayananSection';
+import WilayahKerjaSection from './components/sections/WilayahKerjaSection';
+import StandarPelayananSection from './components/sections/StandarPelayananSection';
 import NewsSection from './components/sections/NewsSection';
 import ContactLocationSection from './components/sections/ContactLocationSection';
 import EmergencyModal from './components/modals/EmergencyModal';
@@ -26,7 +31,14 @@ const UserIcon = () => (
 
 // Baca hash saat ini → tentukan page
 function getPage() {
-  return window.location.hash === '#/org' ? 'org' : 'landing';
+  const hash = window.location.hash;
+  if (hash === '#/org') return 'org';
+  if (hash === '#tupoksi') return 'tupoksi';
+  if (hash === '#pegawai') return 'pegawai';
+  if (hash === '#alur-pelayanan') return 'alur-pelayanan';
+  if (hash === '#wilayah-kerja') return 'wilayah-kerja';
+  if (hash === '#standar-pelayanan') return 'standar-pelayanan';
+  return 'landing';
 }
 
 // ── Halaman Struktur Organisasi ────────────────────────────────────────────────
@@ -51,6 +63,151 @@ function OrgPage({ onOpenEmergency }) {
 
       <main className="flex-1">
         <OrgSection />
+      </main>
+
+      <Footer onOpenEmergency={onOpenEmergency} />
+    </>
+  );
+}
+
+// ── Halaman Tugas Pokok dan Fungsi ─────────────────────────────────────────────
+function TupoksiPage({ onOpenEmergency }) {
+  return (
+    <>
+      <Navbar onOpenEmergency={onOpenEmergency} />
+
+      <PageHeader
+        title="Tugas Pokok dan Fungsi"
+        bgImage="/puskesmas2.png"
+        breadcrumbs={[
+          { label: 'Beranda', href: '#' },
+          { label: 'Profil', href: '#' },
+          { label: 'Tugas Pokok dan Fungsi', href: '#tupoksi' },
+        ]}
+        meta={[
+          { icon: <CalendarIcon />, text: 'UPTD Puskesmas Sukamulya' },
+          { icon: <UserIcon />, text: 'Puskesmas Sukamulya' },
+        ]}
+      />
+
+      <main className="flex-1">
+        <TupoksiSection />
+      </main>
+
+      <Footer onOpenEmergency={onOpenEmergency} />
+    </>
+  );
+}
+
+// ── Halaman Pegawai ────────────────────────────────────────────────────────────
+function PegawaiPage({ onOpenEmergency }) {
+  return (
+    <>
+      <Navbar onOpenEmergency={onOpenEmergency} />
+
+      <PageHeader
+        title="Tim Pegawai"
+        bgImage="/puskesmas2.png"
+        breadcrumbs={[
+          { label: 'Beranda', href: '#' },
+          { label: 'Profil', href: '#' },
+          { label: 'Pegawai', href: '#pegawai' },
+        ]}
+        meta={[
+          { icon: <CalendarIcon />, text: 'UPTD Puskesmas Sukamulya' },
+          { icon: <UserIcon />, text: 'Puskesmas Sukamulya' },
+        ]}
+      />
+
+      <main className="flex-1">
+        <PegawaiSection />
+      </main>
+
+      <Footer onOpenEmergency={onOpenEmergency} />
+    </>
+  );
+}
+
+// ── Halaman Alur Pelayanan ─────────────────────────────────────────────────────
+function AlurPelayananPage({ onOpenEmergency }) {
+  return (
+    <>
+      <Navbar onOpenEmergency={onOpenEmergency} />
+
+      <PageHeader
+        title="Alur Pelayanan"
+        bgImage="/puskesmas2.png"
+        breadcrumbs={[
+          { label: 'Beranda', href: '#' },
+          { label: 'Informasi', href: '#' },
+          { label: 'Alur Pelayanan', href: '#alur-pelayanan' },
+        ]}
+        meta={[
+          { icon: <CalendarIcon />, text: 'UPTD Puskesmas Sukamulya' },
+          { icon: <UserIcon />, text: 'Puskesmas Sukamulya' },
+        ]}
+      />
+
+      <main className="flex-1">
+        <AlurPelayananSection />
+      </main>
+
+      <Footer onOpenEmergency={onOpenEmergency} />
+    </>
+  );
+}
+
+// ── Halaman Wilayah Kerja ──────────────────────────────────────────────────────
+function WilayahKerjaPage({ onOpenEmergency }) {
+  return (
+    <>
+      <Navbar onOpenEmergency={onOpenEmergency} />
+
+      <PageHeader
+        title="Wilayah Kerja"
+        bgImage="/puskesmas2.png"
+        breadcrumbs={[
+          { label: 'Beranda', href: '#' },
+          { label: 'Informasi', href: '#' },
+          { label: 'Wilayah Kerja', href: '#wilayah-kerja' },
+        ]}
+        meta={[
+          { icon: <CalendarIcon />, text: 'UPTD Puskesmas Sukamulya' },
+          { icon: <UserIcon />, text: 'Puskesmas Sukamulya' },
+        ]}
+      />
+
+      <main className="flex-1">
+        <WilayahKerjaSection />
+      </main>
+
+      <Footer onOpenEmergency={onOpenEmergency} />
+    </>
+  );
+}
+
+// ── Halaman Standar Pelayanan ──────────────────────────────────────────────────
+function StandarPelayananPage({ onOpenEmergency }) {
+  return (
+    <>
+      <Navbar onOpenEmergency={onOpenEmergency} />
+
+      <PageHeader
+        title="Standar Pelayanan"
+        bgImage="/puskesmas2.png"
+        breadcrumbs={[
+          { label: 'Beranda', href: '#' },
+          { label: 'Layanan', href: '#' },
+          { label: 'Standar Pelayanan', href: '#standar-pelayanan' },
+        ]}
+        meta={[
+          { icon: <CalendarIcon />, text: 'UPTD Puskesmas Sukamulya' },
+          { icon: <UserIcon />, text: 'Puskesmas Sukamulya' },
+        ]}
+      />
+
+      <main className="flex-1">
+        <StandarPelayananSection />
       </main>
 
       <Footer onOpenEmergency={onOpenEmergency} />
@@ -95,6 +252,16 @@ export default function App() {
     <div className="min-h-screen bg-white text-gray-800 flex flex-col font-sans">
       {page === 'org'
         ? <OrgPage onOpenEmergency={openEmergency} />
+        : page === 'tupoksi'
+        ? <TupoksiPage onOpenEmergency={openEmergency} />
+        : page === 'pegawai'
+        ? <PegawaiPage onOpenEmergency={openEmergency} />
+        : page === 'alur-pelayanan'
+        ? <AlurPelayananPage onOpenEmergency={openEmergency} />
+        : page === 'wilayah-kerja'
+        ? <WilayahKerjaPage onOpenEmergency={openEmergency} />
+        : page === 'standar-pelayanan'
+        ? <StandarPelayananPage onOpenEmergency={openEmergency} />
         : <LandingPage onOpenEmergency={openEmergency} />
       }
 
