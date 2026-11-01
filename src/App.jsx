@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import PageHeader from './components/layout/PageHeader';
+import NewsDetailPage from './pages/NewsDetailPage';
+import KlasterPage from './pages/KlasterPage';
+import AlurPelayananPage from './pages/AlurPelayananPage';
+import JadwalDokterPage from './pages/JadwalDokterPage';
+import BeritaPage from './pages/BeritaPage';
 
 import HeroSection from './components/sections/HeroSection';
 import ServicesSection from './components/sections/ServicesSection';
@@ -25,9 +30,26 @@ const UserIcon = () => (
   </svg>
 );
 
-// Baca hash saat ini → tentukan page
+
 function getPage() {
-  return window.location.hash === '#/org' ? 'org' : 'landing';
+  const hash = window.location.hash;
+  if (hash === '#/org') return 'org';
+  if (hash.startsWith('#/news/')) return 'news';
+  if (hash.startsWith('#/klaster/')) return 'klaster';
+  if (hash === '#/alur-pelayanan') return 'alur';
+  if (hash === '#/jadwal-dokter') return 'jadwal';
+  if (hash === '#/berita') return 'berita';
+  return 'landing';
+}
+
+function getNewsId() {
+  const hash = window.location.hash;
+  return hash.startsWith('#/news/') ? hash.replace('#/news/', '') : null;
+}
+
+function getKlasterId() {
+  const hash = window.location.hash;
+  return hash.startsWith('#/klaster/') ? hash.replace('#/klaster/', '') : null;
 }
 
 // ── Halaman Struktur Organisasi ────────────────────────────────────────────────
@@ -59,7 +81,7 @@ function OrgPage({ onOpenEmergency }) {
   );
 }
 
-// ── Halaman Landing ────────────────────────────────────────────────────────────
+
 function LandingPage({ onOpenEmergency }) {
   return (
     <>
@@ -81,10 +103,14 @@ function LandingPage({ onOpenEmergency }) {
 export default function App() {
   const [isEmergencyModalOpen, setIsEmergencyModalOpen] = useState(false);
   const [page, setPage] = useState(getPage);
+  const [newsId, setNewsId] = useState(getNewsId);
+  const [klasterId, setKlasterId] = useState(getKlasterId);
 
   useEffect(() => {
     const onHash = () => {
       setPage(getPage());
+      setNewsId(getNewsId());
+      setKlasterId(getKlasterId());
       window.scrollTo(0, 0);
     };
     window.addEventListener('hashchange', onHash);
@@ -97,6 +123,16 @@ export default function App() {
     <div className="min-h-screen bg-white text-gray-800 flex flex-col font-sans">
       {page === 'org'
         ? <OrgPage onOpenEmergency={openEmergency} />
+        : page === 'news'
+        ? <NewsDetailPage newsId={newsId} onOpenEmergency={openEmergency} />
+        : page === 'klaster'
+        ? <KlasterPage klasterId={klasterId} onOpenEmergency={openEmergency} />
+        : page === 'alur'
+        ? <AlurPelayananPage onOpenEmergency={openEmergency} />
+        : page === 'jadwal'
+        ? <JadwalDokterPage onOpenEmergency={openEmergency} />
+        : page === 'berita'
+        ? <BeritaPage onOpenEmergency={openEmergency} />
         : <LandingPage onOpenEmergency={openEmergency} />
       }
 

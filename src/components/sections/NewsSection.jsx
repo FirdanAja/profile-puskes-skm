@@ -7,7 +7,7 @@ export default function NewsSection() {
   const [selectedNews, setSelectedNews] = useState(null);
 
   return (
-    <section id="edukasi" className="py-20 lg:py-28 bg-white border-t border-gray-100">
+    <section id="edukasi" className="py-14 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-20">
 
         {/* Header */}
@@ -17,7 +17,7 @@ export default function NewsSection() {
               <p className="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-2">Update Terbaru</p>
               <h2 className="text-3xl sm:text-4xl font-black text-gray-900">Berita & Informasi</h2>
             </div>
-            <a href="#edukasi" className="text-sm font-bold text-gray-900 hover:text-emerald-600 transition-colors">
+            <a href="#edukasi" className="text-sm font-bold text-emerald-600 hover:text-emerald-800 transition-colors">
               Lihat Semua →
             </a>
           </div>
@@ -29,15 +29,19 @@ export default function NewsSection() {
             <Reveal key={item.id} dir="up" delay={i * 100}>
               <div
                 className="group cursor-pointer"
-                onClick={() => setSelectedNews(item)}
+                onClick={() => { window.location.hash = `#/news/${item.id}`; }}
               >
                 {/* Image area */}
-                <div className={`h-48 rounded-2xl mb-4 overflow-hidden ${
-                  item.categoryColor?.includes('teal') ? 'bg-emerald-50' :
-                  item.categoryColor?.includes('blue') ? 'bg-blue-50' : 'bg-amber-50'
-                } flex items-center justify-center relative`}>
-                  <span className="text-6xl opacity-20">📰</span>
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300 rounded-2xl" />
+                <div className="h-48 overflow-hidden mb-4">
+                  <img
+                    src={
+                      i === 0 ? '/puskesmas.png' :
+                      i === 1 ? '/puskesmas2.png' :
+                      '/skmview.png'
+                    }
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
 
                 {/* Meta */}

@@ -1,9 +1,6 @@
 export const puskesmasInfo = {
   name: "UPTD Puskesmas Sukamulya",
-  tagline: "Sehat Bersama, Kuat Bersama",
   subTagline: "Amanah, Setia, Ramah, Inovatif",
-  accreditation: "Akreditasi Paripurna Kemenkes RI",
-  grade: "PARIPURNA",
   emergencyPhone: "082120265418",
   whatsappNumber: "082120265418",
   whatsappLink: "https://wa.me/6282120265418?text=Halo%20Admin%20Puskesmas%20Sukamulya,%20saya%20ingin%20bertanya%20informasi%20layanan",
@@ -12,7 +9,7 @@ export const puskesmasInfo = {
   googleMapsUrl: "https://maps.google.com/?q=Puskesmas+Sukamulya",
   
   hours: {
-    weekdays: "07.30 - 14.30 WIB",
+    weekdays: "07.30 - 14.15 WIB",
     saturday: "08.00 - 12.30 WIB",
     emergency: "24 Jam Non-Stop (UGD, Rawat Inap & Ambulans)",
     laboratorium: "08.00 - 13.00 WIB",

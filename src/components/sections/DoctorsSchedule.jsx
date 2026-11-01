@@ -32,7 +32,7 @@ export default function DoctorsSchedule() {
   const displayDoctors = doctorsList.slice(0, 4);
 
   return (
-    <section id="jadwal-dokter" className="py-16 lg:py-20 bg-gray-50 border-t border-gray-100">
+    <section id="jadwal-dokter" className="py-12 lg:py-14 bg-gray-50 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-20">
         
         {/* Header */}

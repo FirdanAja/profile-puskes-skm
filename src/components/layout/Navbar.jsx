@@ -13,7 +13,7 @@ const ChevronRightIcon = ({ className = "w-4 h-4" }) => (
   </svg>
 );
 
-/* Arrow dropdown — ikon chevron tipis tanpa background */
+2
 const DropArrow = ({ open, scrolled }) => (
   <svg
     className={`w-3.5 h-3.5 transition-all duration-300 ${open ? 'rotate-180' : ''}
@@ -32,7 +32,7 @@ const DropArrow = ({ open, scrolled }) => (
   </svg>
 );
 
-/* Arrow nested — chevron kanan tipis */
+
 const SubArrow = ({ open }) => (
   <svg
     className={`w-3.5 h-3.5 transition-all duration-300 ${open ? 'translate-x-0.5 text-emerald-600' : 'text-emerald-400'}`}
@@ -47,7 +47,7 @@ const SubArrow = ({ open }) => (
   </svg>
 );
 
-// ── Data menu ──────────────────────────────────────────────────────────────────
+
 const navLinks = [
   { label: "Beranda", href: "#beranda", active: true },
   {
@@ -74,11 +74,11 @@ const navLinks = [
         label: "Standar Pelayanan",
         href: "#layanan",
         sub: [
-          { label: "Klaster 1 ", href: "#layanan" },
-          { label: "Klaster 2 ", href: "#layanan" },
-          { label: "Klaster 3 ", href: "#layanan" },
-          { label: "Klaster 4 ", href: "#layanan" },
-          { label: "Lintas Klaster", href: "#layanan" },
+          { label: "Klaster 1 — Manajemen",       href: "#/klaster/klaster-1" },
+          { label: "Klaster 2 — Ibu dan Anak",     href: "#/klaster/klaster-2" },
+          { label: "Klaster 3 — Dewasa & Lansia",  href: "#/klaster/klaster-3" },
+          { label: "Klaster 4 — Penyakit Menular", href: "#/klaster/klaster-4" },
+          { label: "Lintas Klaster",               href: "#/klaster/lintas-klaster" },
         ],
       },
     ],
@@ -87,13 +87,11 @@ const navLinks = [
     label: "Informasi",
     href: "#alur-pelayanan",
     dropdown: [
-      { label: "Alur Pelayanan", href: "#alur-pelayanan" },
-      { label: "Jadwal Dokter", href: "#jadwal-dokter" },
-      { label: "Berita & Artikel", href: "#edukasi" },
-      { label: "FAQ", href: "#faq" },
+      { label: "Alur Pelayanan",   href: "#/alur-pelayanan" },
+      { label: "Jadwal Dokter",    href: "#/jadwal-dokter" },
+      { label: "Berita & Artikel", href: "#/berita" },
     ],
   },
-  { label: "Berita", href: "#edukasi" },
   { label: "Galeri", href: "#galeri" },
   { label: "Kontak", href: "#kontak" },
 ];

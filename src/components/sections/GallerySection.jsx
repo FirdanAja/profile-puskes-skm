@@ -13,10 +13,7 @@ const galleryItems = [
   { id: 9, src: '/puskesmas.png',  label: 'Tim Medis' },
 ];
 
-// Layout grid asimetris 3 baris
-// Baris 1: [lebar 2] [normal] [normal]  → 4 kolom total
-// Baris 2: [normal] [normal] [lebar 2]  → 4 kolom total  
-// Baris 3: [normal] [lebar 2] [normal]  → 4 kolom total
+
 const layout = [
   { id: 1, colSpan: 2, rowSpan: 1 },
   { id: 2, colSpan: 1, rowSpan: 1 },
@@ -33,7 +30,7 @@ export default function GallerySection() {
   const [active, setActive] = useState(null);
 
   return (
-    <section id="galeri" className="py-20 lg:py-28 bg-gray-50 border-t border-gray-100">
+    <section id="galeri" className="py-14 lg:py-16 bg-gray-100">
       <div className="max-w-7xl mx-auto px-20">
 
         {/* Header */}

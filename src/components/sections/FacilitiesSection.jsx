@@ -16,7 +16,7 @@ export default function FacilitiesSection() {
   };
 
   return (
-    <section id="fasilitas" className="py-20 lg:py-28 bg-slate-50 border-t border-slate-200/60">
+    <section id="fasilitas" className="py-14 lg:py-16 bg-slate-50 border-t border-slate-200/60">
       <div className="max-w-7xl mx-auto px-20">
         
         <SectionTitle

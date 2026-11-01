@@ -3,27 +3,16 @@ import { puskesmasInfo } from '../../data/puskesmasData';
 import Reveal from '../common/Reveal';
 import useCountUp from '../../hooks/useCountUp';
 
-// Parse angka dari string seperti "48.500+", "98.7%", "36+"
 function parseTarget(value) {
   const clean = value.replace(/[^0-9.]/g, '');
   return parseFloat(clean) || 0;
 }
-
-// Ambil suffix: "+", "%", dll
 function getSuffix(value) {
   return value.replace(/[0-9.,]/g, '');
 }
-
-// Format angka dengan titik ribuan
 function formatNumber(num, original) {
-  if (original.includes('.') && !original.includes('%')) {
-    // angka ribuan pakai titik: 48.500
-    return num.toLocaleString('id-ID');
-  }
-  if (original.includes('%')) {
-    // desimal: 98.7
-    return num % 1 !== 0 ? num.toFixed(1) : num.toString();
-  }
+  if (original.includes('.') && !original.includes('%')) return num.toLocaleString('id-ID');
+  if (original.includes('%')) return num % 1 !== 0 ? num.toFixed(1) : num.toString();
   return num.toString();
 }
 
@@ -31,21 +20,12 @@ function StatCard({ stat }) {
   const target = parseTarget(stat.value);
   const suffix = getSuffix(stat.value);
   const [ref, count] = useCountUp(target, 2000);
-
   return (
-    <div
-      ref={ref}
-      className="relative overflow-hidden p-10 border border-emerald-400/30"
-      style={{ background: 'rgba(5, 150, 105, 0.08)' }}
-    >
-      {/* decorative circle */}
-      <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-emerald-400/10" />
-      <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-emerald-400/10" />
-
+    <div ref={ref} className="relative overflow-hidden p-10 border border-emerald-600/30" style={{ background: 'rgba(5, 150, 105, 0.08)' }}>
+      <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-emerald-600/10" />
+      <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-emerald-600/10" />
       <div className="relative z-10">
-        <div className="text-5xl font-black text-emerald-700 leading-none mb-3">
-          {formatNumber(count, stat.value)}{suffix}
-        </div>
+        <div className="text-5xl font-black text-emerald-700 leading-none mb-3">{formatNumber(count, stat.value)}{suffix}</div>
         <div className="text-base font-bold text-gray-800 mb-1">{stat.label}</div>
         <div className="text-sm text-gray-500 leading-snug">{stat.description}</div>
       </div>
@@ -60,93 +40,91 @@ const tataValues = [
   { letter: "I", label: "Inovatif", desc: "Puskesmas Sukamulya selalu inginkan ada pembaharuan, atau perbaikan menuju perbaikan kinerja ke arah yang lebih baik" },
 ];
 
+const misiItems = [
+  { num: "01", title: "Percepatan Pelayanan Kesehatan", desc: "yang Berintergrasi dan Profesional." },
+  { num: "02", title: "Membangun Daya Kreasi", desc: "Inovasi, dan Produktivitas pemberdayaan (Empowering)." },
+  { num: "03", title: "Penerapan Nilai Agamis", desc: "dalam Kehidupan Berbudaya dan Masyarakat." },
+];
+
 export default function AboutSection() {
   return (
-    <section id="profil" className="bg-white py-24 lg:py-32">
+    <section id="profil" className="bg-white py-14 lg:py-16">
       <div className="max-w-7xl mx-auto px-20">
 
-        {/* Header */}
+        {/* ── Top Header — center ── */}
         <Reveal dir="up">
-          <div className="max-w-2xl mb-16">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Tentang Kami
-            </span>
-            <h2 className="text-4xl sm:text-5xl font-black text-gray-900 leading-tight mb-5">
-              Puskesmas Sukamulya<br />
-              <span className="text-emerald-600">untuk Masyarakat Sehat</span>
-            </h2>
-            <p className="text-base text-gray-500 leading-relaxed">
-              UPTD Puskesmas Sukamulya adalah fasilitas pelayanan kesehatan tingkat pertama yang hadir untuk memberikan layanan bermutu, merata, dan berkesinambungan bagi seluruh masyarakat Kecamatan Sukamulya, Kabupaten Kuningan.
+          <div className="text-center mb-20">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-gray-600 mb-3">Arah Kebijakan Institusi</p>
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">Visi, Misi & Tata Nilai Organisasi</h2>
+            <p className="text-sm text-gray-600 max-w-xl mx-auto leading-relaxed">
+              Prinsip fundamental yang membimbing seluruh tenaga medis dan staf dalam mewujudkan pelayanan kesehatan bermartabat.
             </p>
           </div>
         </Reveal>
 
-        {/* 2 Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
+        {/* ── 2 Kolom: Visi kiri | Misi kanan ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
 
-          {/* Card Visi & Misi */}
+          {/* Kiri — Visi */}
           <Reveal dir="left">
-            <div className="bg-emerald-600 rounded-3xl p-8 text-white relative overflow-hidden flex flex-col gap-8 h-full">
-              <div className="absolute -top-10 -right-10 w-48 h-48 bg-white/10 rounded-full" />
-              <div className="absolute -bottom-12 -left-12 w-56 h-56 bg-white/5 rounded-full" />
-
-              <div className="relative z-10">
-                <p className="text-base font-black uppercase tracking-widest text-white/70 mb-3">Visi</p>
-                <p className="text-sm leading-relaxed text-white/90 italic">
-                  "{puskesmasInfo.vision}"
-                </p>
+            <div className="flex flex-col h-full">
+              <div className="flex items-center gap-2 mb-6">
+                
+                <p className="text-md font-bold uppercase tracking-widest text-emerald-600">Visi Puskesmas</p>
               </div>
 
-              <div className="relative z-10 h-px bg-white/20" />
+              <blockquote className="text-xl sm:text-2xl font-black text-gray-900 leading-snug mb-6 border-l-4 border-emerald-500 pl-5">
+                "{puskesmasInfo.vision}"
+              </blockquote>
 
-              <div className="relative z-10">
-                <p className="text-base font-black uppercase tracking-widest text-white/70 mb-4">Misi</p>
-                <ul className="space-y-3">
-                  {puskesmasInfo.mission.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <span className="w-5 h-5 rounded-full bg-white/20 text-white font-black flex items-center justify-center shrink-0 text-[10px] mt-0.5">
-                        {idx + 1}
-                      </span>
-                      <span className="text-sm text-white/85 leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <p className="text-sm text-gray-600 leading-relaxed mt-auto">
+                Menjadi acuan jangka panjang seluruh program pembangunan kesehatan tingkat pertama di wilayah Sukamulya.
+              </p>
             </div>
           </Reveal>
 
-          {/* Card Tata Nilai */}
-          <Reveal dir="right" delay={200}>
-            <div className="bg-gray-900 rounded-3xl p-8 flex flex-col h-full">
-              <p className="text-base font-black uppercase tracking-widest text-white/70 mb-6">Tata Nilai</p>
-              <p className="text-base font-black tracking-widest text-white/100 mb-1">A-S-R-I</p>
-              <ul className="space-y-4 flex-1">
-                {tataValues.map((v) => (
-                  <li key={v.label} className="flex items-start gap-4">
-                    <span className="w-7 h-7 rounded-xl bg-emerald-600 text-white font-black text-[11px] flex items-center justify-center shrink-0 mt-0.5">
-                      {v.letter}
-                    </span>
-                    <div>
-                      <div className="text-sm font-bold text-white">{v.label}</div>
-                      <div className="text-xs text-white/40 leading-snug mt-0.5">{v.desc}</div>
-                    </div>
-                  </li>
+          {/* Kanan — Misi grid */}
+          <Reveal dir="right" delay={150}>
+            <div>
+              <div className="mb-6">
+                <p className="text-md font-bold uppercase tracking-widest text-emerald-600 mb-1">Misi Utama</p>
+                <h3 className="text-lg font-black text-gray-900">Empat Pilar Pelaksanaan Misi</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {misiItems.map((m) => (
+                  <div key={m.num}>
+                    <p className="text-xs font-bold text-emerald-600 mb-1">{m.num}. {m.title}</p>
+                    <p className="text-sm text-gray-500 leading-relaxed">{m.desc}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </Reveal>
 
         </div>
 
-        {/* Stats */}
-        <Reveal dir="up" delay={100}>
-          <div className="grid grid-cols-2 lg:grid-cols-4">
-            {puskesmasInfo.stats.map((s) => (
-              <StatCard key={s.label} stat={s} />
-            ))}
+        {/* ── Divider ── */}
+        <div className="h-px bg-gray-100 mb-20" />
+
+        {/* ── Tata Nilai ASRI ── */}
+        <Reveal dir="up">
+          <div className="mb-10">
+            <p className="text-sm font-bold uppercase tracking-widest text-emerald-600 mb-1">Budaya Kerja Kami</p>
+            <h3 className="text-lg font-black text-gray-900">Tata Nilai Institusi <span className="text-emerald-600">"A-S-R-I"</span></h3>
           </div>
         </Reveal>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 border border-gray-100">
+          {tataValues.map((v, i) => (
+            <Reveal key={v.letter} dir="up" delay={i * 100}>
+              <div className="p-8 text-center border-r border-gray-100 last:border-r-0 hover:bg-emerald-50/50 transition-colors duration-200">
+                <div className="text-5xl font-black text-emerald-600 mb-3">{v.letter}</div>
+                <div className="text-sm font-black text-gray-900 mb-3">{v.label}</div>
+                <div className="text-xs text-gray-700 leading-relaxed">{v.desc}</div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
 
       </div>
     </section>

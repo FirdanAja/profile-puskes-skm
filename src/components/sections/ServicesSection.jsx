@@ -123,7 +123,7 @@ const services = [
 
 export default function ServicesSection({ initialSearch = "" }) {
   return (
-    <section id="layanan" className="py-16 lg:py-20 bg-white">
+    <section id="layanan" className="py-12 lg:py-14 bg-gray-100">
       <div className="max-w-7xl mx-auto px-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 

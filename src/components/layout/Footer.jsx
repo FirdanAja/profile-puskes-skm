@@ -79,26 +79,13 @@ export default function Footer({ onOpenEmergency }) {
             </div>
           </div>
 
-          {/* Col 2: Alamat & Kontak */}
+          {/* Col 2: Tentang */}
           <div className="space-y-4">
-            <h4 className="text-sm font-bold text-white">Alamat</h4>
-            <div className="space-y-3 text-xs text-gray-400">
-              <div className="flex items-start gap-2">
-                <MapPinIcon className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                <span className="leading-relaxed">{puskesmasInfo.address}</span>
-              </div>
-            </div>
-            <h4 className="text-sm font-bold text-white pt-2">Kontak</h4>
-            <div className="space-y-2 text-xs text-gray-400">
-              <div className="flex items-center gap-2">
-                <PhoneIcon className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>{puskesmasInfo.emergencyPhone}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MailIcon className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span className="break-all">{puskesmasInfo.email}</span>
-              </div>
-            </div>
+            <h4 className="text-sm font-bold text-white">Tentang Puskesmas</h4>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              UPTD Puskesmas Sukamulya adalah fasilitas pelayanan kesehatan tingkat pertama yang melayani masyarakat Kecamatan Sukamulya, Kabupaten Kuningan, Jawa Barat.
+            </p>
+           
           </div>
 
           {/* Col 3: Link Cepat */}
@@ -118,39 +105,30 @@ export default function Footer({ onOpenEmergency }) {
             </ul>
           </div>
 
-          {/* Col 4: Maps */}
-          <div className="space-y-4" id="kontak">
-            <h4 className="text-sm font-bold text-white">Lokasi Kami</h4>
-            {/* Map placeholder */}
-            <div className="w-full h-40 bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
-              <iframe
-                title="Lokasi Puskesmas Sukamulya"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.0!2d106.5!3d-6.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPuskesmas%20Sukamulya!5e0!3m2!1sen!2sid!4v1697000000000!5m2!1sen!2sid&q=Puskesmas+Sukamulya+Tangerang"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+          {/* Col 4: Kontak */}
+          <div className="space-y-4">
+            <h4 className="text-sm font-bold text-white">Kontak</h4>
+            <div className="space-y-3 text-xs text-gray-400">
+              <div className="flex items-start gap-2">
+                <MapPinIcon className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                <span className="leading-relaxed">{puskesmasInfo.address}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <PhoneIcon className="w-4 h-4 text-emerald-500 shrink-0" />
+                <span>{puskesmasInfo.emergencyPhone}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MailIcon className="w-4 h-4 text-emerald-500 shrink-0" />
+                <span className="break-all">{puskesmasInfo.email}</span>
+              </div>
             </div>
-            <a
-              href={puskesmasInfo.googleMapsUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs transition-colors"
-            >
-              <MapIcon className="w-3.5 h-3.5" />
-              Lihat Lokasi di Google Maps →
-            </a>
           </div>
 
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-3">
-          <p>© 2024 Puskesmas Sukamulya. All rights reserved.</p>
-          <p className="text-gray-600">Sehat Bersama, Kuat Bersama</p>
+        <div className="pt-6 flex flex-col sm:flex-center items-center text-xs text-gray-500 gap-3">
+          <p>© 2026 UPTD Puskesmas Sukamulya. All rights reserved.</p>
         </div>
 
       </div>
