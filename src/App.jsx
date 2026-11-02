@@ -12,6 +12,10 @@ import HeroSection from './components/sections/HeroSection';
 import ServicesSection from './components/sections/ServicesSection';
 import AboutSection from './components/sections/AboutSection';
 import OrgSection from './components/sections/OrgSection';
+import TupoksiSection from './components/sections/TupoksiSection';
+import PegawaiSection from './components/sections/PegawaiSection';
+import WilayahKerjaSection from './components/sections/WilayahKerjaSection';
+import StandarPelayananSection from './components/sections/StandarPelayananSection';
 import NewsSection from './components/sections/NewsSection';
 import GallerySection from './components/sections/GallerySection';
 import ContactLocationSection from './components/sections/ContactLocationSection';
@@ -30,7 +34,6 @@ const UserIcon = () => (
   </svg>
 );
 
-
 function getPage() {
   const hash = window.location.hash;
   if (hash === '#/org') return 'org';
@@ -39,6 +42,10 @@ function getPage() {
   if (hash === '#/alur-pelayanan') return 'alur';
   if (hash === '#/jadwal-dokter') return 'jadwal';
   if (hash === '#/berita') return 'berita';
+  if (hash === '#tupoksi') return 'tupoksi';
+  if (hash === '#pegawai') return 'pegawai';
+  if (hash === '#wilayah-kerja') return 'wilayah-kerja';
+  if (hash === '#standar-pelayanan') return 'standar-pelayanan';
   return 'landing';
 }
 
@@ -52,35 +59,68 @@ function getKlasterId() {
   return hash.startsWith('#/klaster/') ? hash.replace('#/klaster/', '') : null;
 }
 
-// ── Halaman Struktur Organisasi ────────────────────────────────────────────────
-function OrgPage({ onOpenEmergency }) {
+// ── Page Wrappers ──────────────────────────────────────────────────────────────
+function PageWrapper({ onOpenEmergency, title, bgImage, breadcrumbs, children }) {
   return (
     <>
       <Navbar onOpenEmergency={onOpenEmergency} />
-
-      <PageHeader
-        title="Struktur Organisasi dan Tata Kerja"
-        bgImage="/puskesmas2.png"
-        breadcrumbs={[
-          { label: 'Beranda', href: '#' },
-          { label: 'Profil', href: '#' },
-          { label: 'Struktur Organisasi', href: '#/org' },
-        ]}
-        meta={[
-          { icon: <CalendarIcon />, text: 'UPTD Puskesmas Sukamulya' },
-          { icon: <UserIcon />, text: 'Puskesmas Sukamulya' },
-        ]}
-      />
-
-      <main className="flex-1">
-        <OrgSection />
-      </main>
-
+      <PageHeader title={title} bgImage={bgImage} breadcrumbs={breadcrumbs}
+        meta={[{ icon: <CalendarIcon />, text: 'UPTD Puskesmas Sukamulya' }]} />
+      <main className="flex-1">{children}</main>
       <Footer onOpenEmergency={onOpenEmergency} />
     </>
   );
 }
 
+function OrgPage({ onOpenEmergency }) {
+  return (
+    <PageWrapper onOpenEmergency={onOpenEmergency} title="Struktur Organisasi dan Tata Kerja"
+      bgImage="/puskesmas2.png"
+      breadcrumbs={[{label:'Beranda',href:'#'},{label:'Profil',href:'#'},{label:'Struktur Organisasi',href:'#/org'}]}>
+      <OrgSection />
+    </PageWrapper>
+  );
+}
+
+function TupoksiPage({ onOpenEmergency }) {
+  return (
+    <PageWrapper onOpenEmergency={onOpenEmergency} title="Tugas Pokok dan Fungsi"
+      bgImage="/puskesmas2.png"
+      breadcrumbs={[{label:'Beranda',href:'#'},{label:'Profil',href:'#'},{label:'Tugas Pokok dan Fungsi',href:'#tupoksi'}]}>
+      <TupoksiSection />
+    </PageWrapper>
+  );
+}
+
+function PegawaiPage({ onOpenEmergency }) {
+  return (
+    <PageWrapper onOpenEmergency={onOpenEmergency} title="Tim Pegawai"
+      bgImage="/puskesmas2.png"
+      breadcrumbs={[{label:'Beranda',href:'#'},{label:'Profil',href:'#'},{label:'Pegawai',href:'#pegawai'}]}>
+      <PegawaiSection />
+    </PageWrapper>
+  );
+}
+
+function WilayahKerjaPage({ onOpenEmergency }) {
+  return (
+    <PageWrapper onOpenEmergency={onOpenEmergency} title="Wilayah Kerja"
+      bgImage="/puskesmas2.png"
+      breadcrumbs={[{label:'Beranda',href:'#'},{label:'Informasi',href:'#'},{label:'Wilayah Kerja',href:'#wilayah-kerja'}]}>
+      <WilayahKerjaSection />
+    </PageWrapper>
+  );
+}
+
+function StandarPelayananPage({ onOpenEmergency }) {
+  return (
+    <PageWrapper onOpenEmergency={onOpenEmergency} title="Standar Pelayanan"
+      bgImage="/puskesmas2.png"
+      breadcrumbs={[{label:'Beranda',href:'#'},{label:'Layanan',href:'#'},{label:'Standar Pelayanan',href:'#standar-pelayanan'}]}>
+      <StandarPelayananSection />
+    </PageWrapper>
+  );
+}
 
 function LandingPage({ onOpenEmergency }) {
   return (
@@ -119,22 +159,25 @@ export default function App() {
 
   const openEmergency = () => setIsEmergencyModalOpen(true);
 
+  const renderPage = () => {
+    switch (page) {
+      case 'org':              return <OrgPage onOpenEmergency={openEmergency} />;
+      case 'news':             return <NewsDetailPage newsId={newsId} onOpenEmergency={openEmergency} />;
+      case 'klaster':          return <KlasterPage klasterId={klasterId} onOpenEmergency={openEmergency} />;
+      case 'alur':             return <AlurPelayananPage onOpenEmergency={openEmergency} />;
+      case 'jadwal':           return <JadwalDokterPage onOpenEmergency={openEmergency} />;
+      case 'berita':           return <BeritaPage onOpenEmergency={openEmergency} />;
+      case 'tupoksi':          return <TupoksiPage onOpenEmergency={openEmergency} />;
+      case 'pegawai':          return <PegawaiPage onOpenEmergency={openEmergency} />;
+      case 'wilayah-kerja':    return <WilayahKerjaPage onOpenEmergency={openEmergency} />;
+      case 'standar-pelayanan':return <StandarPelayananPage onOpenEmergency={openEmergency} />;
+      default:                 return <LandingPage onOpenEmergency={openEmergency} />;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white text-gray-800 flex flex-col font-sans">
-      {page === 'org'
-        ? <OrgPage onOpenEmergency={openEmergency} />
-        : page === 'news'
-        ? <NewsDetailPage newsId={newsId} onOpenEmergency={openEmergency} />
-        : page === 'klaster'
-        ? <KlasterPage klasterId={klasterId} onOpenEmergency={openEmergency} />
-        : page === 'alur'
-        ? <AlurPelayananPage onOpenEmergency={openEmergency} />
-        : page === 'jadwal'
-        ? <JadwalDokterPage onOpenEmergency={openEmergency} />
-        : page === 'berita'
-        ? <BeritaPage onOpenEmergency={openEmergency} />
-        : <LandingPage onOpenEmergency={openEmergency} />
-      }
+      {renderPage()}
 
       <EmergencyModal
         isOpen={isEmergencyModalOpen}

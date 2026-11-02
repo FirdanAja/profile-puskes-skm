@@ -13,7 +13,7 @@ const ChevronRightIcon = ({ className = "w-4 h-4" }) => (
   </svg>
 );
 
-2
+/* Arrow dropdown — ikon chevron tipis tanpa background */
 const DropArrow = ({ open, scrolled }) => (
   <svg
     className={`w-3.5 h-3.5 transition-all duration-300 ${open ? 'rotate-180' : ''}
@@ -54,16 +54,14 @@ const navLinks = [
     label: "Profil",
     href: "#profil",
     dropdown: [
-      { label: "Tugas Pokok dan Fungsi", href: "#profil" },
+      { label: "Tugas Pokok dan Fungsi", href: "#tupoksi" },
       { label: "Visi Misi", href: "#profil" },
       {
         label: "Struktur Organisasi",
         href: "#/org",
       },
-      
-      { label: "Maklumat Pelayanan", href: "#profil" },
-      { label: "Pegawai", href: "#profil" },
-    ],
+      { label: "Pegawai", href: "#pegawai" },
+      { label: "Maklumat Pelayanan", href: "#profil" },    ],
   },
   {
     label: "Layanan",
@@ -72,7 +70,7 @@ const navLinks = [
       { label: "Jenis Pelayanan", href: "#layanan" },
       {
         label: "Standar Pelayanan",
-        href: "#layanan",
+        href: "#standar-pelayanan",
         sub: [
           { label: "Klaster 1 — Manajemen",       href: "#/klaster/klaster-1" },
           { label: "Klaster 2 — Ibu dan Anak",     href: "#/klaster/klaster-2" },
@@ -88,6 +86,7 @@ const navLinks = [
     href: "#alur-pelayanan",
     dropdown: [
       { label: "Alur Pelayanan",   href: "#/alur-pelayanan" },
+      { label: "Wilayah Kerja",    href: "#wilayah-kerja" },
       { label: "Jadwal Dokter",    href: "#/jadwal-dokter" },
       { label: "Berita & Artikel", href: "#/berita" },
     ],
