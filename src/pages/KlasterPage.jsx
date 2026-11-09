@@ -50,7 +50,7 @@ export default function KlasterPage({ klasterId, onOpenEmergency }) {
       <main className="flex-1 py-14 bg-white">
         <div className="max-w-7xl mx-auto px-20">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-
+ 
             {/* ── Konten Utama ── */}
             <div className="lg:col-span-2 space-y-10">
 
