@@ -285,7 +285,122 @@ function PegawaiDetailModal({ pegawai, onClose }) {
   );
 }
 
+<<<<<<< Updated upstream
 // ── Pegawai Card Component ──────────────────────────────────────────────────────
+=======
+// ── Kepala Puskesmas Hero Card ──────────────────────────────────────────────────
+function KepalaPuskesmasCard({ pegawai, onSelect }) {
+  const [imgError, setImgError] = useState(false);
+  const hasPhoto = Boolean(pegawai.foto && !imgError);
+
+  return (
+    <div
+      onClick={() => onSelect(pegawai)}
+      className="relative bg-gray-900 overflow-hidden cursor-pointer group mb-16"
+    >
+      <div className="flex flex-row items-stretch h-[175px] sm:h-[230px] lg:h-auto lg:min-h-[320px]">
+
+        {/* Kiri — Info */}
+        <div className="min-w-0 flex-1 p-3 sm:p-5 lg:p-14 flex flex-col justify-between relative z-10 overflow-hidden">
+          {/* Dekorasi */}
+          <div className="absolute -top-10 -left-10 w-40 h-40 bg-emerald-500/10 rounded-full" />
+          <div className="absolute bottom-0 left-0 w-64 h-1 bg-gradient-to-r from-emerald-500 to-transparent" />
+
+          <div>
+            {/* Label */}
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-3 mb-3 lg:mb-6">
+              <span className="inline-block bg-emerald-600 text-white text-[8px] sm:text-[10px] font-black uppercase tracking-widest px-2 sm:px-3 py-1">
+                Pimpinan Instansi
+              </span>
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-[9px] sm:text-xs text-gray-400 font-medium">Bertugas Aktif</span>
+              </div>
+            </div>
+
+            {/* Nama */}
+            <h2 className="text-sm sm:text-2xl lg:text-3xl font-black text-white leading-tight mb-1">
+              {pegawai.nama}
+            </h2>
+            <p className="text-[10px] sm:text-sm text-emerald-400 font-semibold mb-3 lg:mb-6">{pegawai.jabatan}</p>
+
+            {/* Info pills */}
+            <div className="flex flex-wrap items-center gap-1.5 mb-3 lg:mb-6">
+              {pegawai.golongan && pegawai.golongan !== '-' && (
+                <span                 className="text-[9px] sm:text-xs font-mono text-gray-400 border border-gray-700 px-2 sm:px-3 py-1">
+                  Gol. {pegawai.golongan}
+                </span>
+              )}
+              {pegawai.masaKerja && pegawai.masaKerja !== '0 Th' && (
+                <span                 className="text-[9px] sm:text-xs font-mono text-gray-400 border border-gray-700 px-2 sm:px-3 py-1">
+                  {pegawai.masaKerja} Masa Kerja
+                </span>
+              )}
+            </div>
+
+            {/* Quote */}
+            <div className="hidden sm:block border-l-2 border-emerald-500 pl-2 sm:pl-4 mb-3 lg:mb-8">
+              <p className="text-[10px] sm:text-sm text-gray-400 italic leading-relaxed line-clamp-2 lg:line-clamp-none">
+                "Memberikan pelayanan kesehatan yang bermutu, merata, dan berkesinambungan bagi seluruh masyarakat."
+              </p>
+              <p className="text-[8px] sm:text-[10px] font-bold text-emerald-500 uppercase tracking-widest mt-1 lg:mt-2">Visi Pelayanan Puskesmas</p>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              onClick={(e) => { e.stopPropagation(); onSelect(pegawai); }}
+              className="inline-flex items-center gap-1.5 px-2.5 sm:px-5 py-2 sm:py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-[9px] sm:text-xs font-bold transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              Lihat Profil Lengkap
+            </button>
+          </div>
+        </div>
+
+        {/* Kanan — Foto */}
+        <div className="relative w-28 sm:w-32 lg:w-80 xl:w-96 shrink-0 h-full lg:min-h-0 bg-white" style={{backgroundColor:'#ffffff'}}>
+          {hasPhoto ? (
+            <img
+              src={pegawai.foto}
+              alt={pegawai.nama}
+              onError={() => setImgError(true)}
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 relative z-10"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gray-800">
+              <svg className="w-20 h-20 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+          )}
+          {/* Gradasi kiri — di bawah foto (z-0) hanya blur tepi */}
+          <div className="absolute inset-y-0 left-0 w-1/3 z-0 hidden lg:block" style={{background: 'linear-gradient(to right, #111827 0%, #111827 10%, rgba(17,24,39,0.6) 50%, transparent 100%)'}} />
+
+          {/* Badge masa pengabdian */}
+          {pegawai.masaKerja && pegawai.masaKerja !== '0 Th' && (
+            <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 z-20 bg-white shadow-xl px-2 py-1.5 sm:px-4 sm:py-2.5 flex items-center gap-1.5 sm:gap-3">
+              <div className="w-5 h-5 sm:w-8 sm:h-8 bg-emerald-100 flex items-center justify-center shrink-0">
+                <svg className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-[7px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-wide leading-tight">Masa Pengabdian</p>
+                <p className="text-[9px] sm:text-sm font-black text-gray-900 leading-tight">{pegawai.masaKerja} Pelayanan</p>
+              </div>
+            </div>
+          )}
+        </div>
+
+      </div>
+    </div>
+  );
+}
+>>>>>>> Stashed changes
 function PegawaiCard({ pegawai, onSelect, index = 0 }) {
   const [imgError, setImgError] = useState(false);
   const style = bidangStyles[pegawai.bidang] || bidangStyles["Support"];
@@ -297,6 +412,7 @@ function PegawaiCard({ pegawai, onSelect, index = 0 }) {
       style={{ animationDelay: `${(index % 8) * 70}ms` }}
       className="group relative bg-white rounded-2xl shadow-xs border border-gray-200/90 overflow-hidden hover:shadow-2xl hover:shadow-emerald-500/15 hover:border-emerald-300 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between cursor-pointer animate-card-in"
     >
+<<<<<<< Updated upstream
       {/* Top accent bar (klaster color) */}
       <div className={`h-1 w-full bg-gradient-to-r ${style.headerGrad}`} />
 
@@ -377,6 +493,35 @@ function PegawaiCard({ pegawai, onSelect, index = 0 }) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
         </span>
+=======
+      {/* Foto */}
+      <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-white mb-0" style={{backgroundColor:'#ffffff'}}>
+        {hasPhoto ? (
+          <img
+            src={pegawai.foto}
+            alt={pegawai.nama}
+            loading="lazy"
+            onError={() => setImgError(true)}
+            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-50 flex flex-col items-center justify-center">
+            <UserIcon className="w-12 h-12 text-gray-200" />
+          </div>
+        )}
+        {/* Gradasi bawah */}
+        <div className="absolute inset-x-0 bottom-0 h-12 sm:h-28 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none" />
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-emerald-600/0 group-hover:bg-emerald-600/10 transition-colors duration-300 pointer-events-none" />
+      </div>
+
+      {/* Nama & Jabatan */}
+      <div className="pt-1 pb-4 border-b border-gray-100 group-hover:border-emerald-200 transition-colors">
+        <h3 className="font-bold text-[10px] sm:text-sm text-gray-900 group-hover:text-emerald-700 transition-colors leading-snug mb-0.5 line-clamp-2">
+          {pegawai.nama}
+        </h3>
+        <p className="text-[9px] sm:text-xs text-gray-400 line-clamp-1">{pegawai.jabatan}</p>
+>>>>>>> Stashed changes
       </div>
     </div>
   );
@@ -483,8 +628,13 @@ export default function PegawaiSection() {
   }, [groupedPegawai]);
 
   return (
+<<<<<<< Updated upstream
     <section id="pegawai" className="py-14 sm:py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+=======
+    <section id="pegawai" className="py-14 sm:py-20 bg-white border-t border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+>>>>>>> Stashed changes
 
         {/* Section header */}
         <div className="text-center mb-10">
@@ -586,8 +736,12 @@ export default function PegawaiSection() {
                           {groupedPegawai[bidang]?.length || 0} Pegawai
                         </span>
                       </div>
+<<<<<<< Updated upstream
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+=======
+                      <div className="grid grid-cols-3 gap-3 sm:gap-6 lg:grid-cols-4 bg-white">
+>>>>>>> Stashed changes
                         {groupedPegawai[bidang]?.map((pegawai, idx) => (
                           <PegawaiCard
                             key={pegawai.id}
@@ -602,7 +756,7 @@ export default function PegawaiSection() {
                 })}
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+              <div className="grid grid-cols-3 gap-3 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
                 {filteredData.map((pegawai, idx) => (
                   <PegawaiCard
                     key={pegawai.id}

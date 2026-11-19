@@ -84,3 +84,42 @@ export const doctorsList = [
     quote: "Pola makan bergizi seimbang adalah investasi kesehatan terbaik jangka panjang."
   }
 ];
+
+export const doctorServiceSchedule = [
+  {
+    poli: "Poli Umum",
+    petugas: [
+      { nama: "dr. Hj. Yati Rochdiyawati Hadiyat, MKM.", hari: "Senin-Sabtu" },
+      { nama: "dr. Intan Rihhadatul’Aisy", hari: "Rabu dan Jumat" },
+    ],
+  },
+  {
+    poli: "Poli Lansia",
+    petugas: [
+      { nama: "dr. Hj. Rina Sufriani", hari: "Senin dan Rabu-Sabtu" },
+      { nama: "dr. Intan Rihhadatul’Aisy", hari: "Selasa" },
+    ],
+  },
+  {
+    poli: "Poli Gigi",
+    petugas: [
+      { nama: "drg. Ono Sumarno", hari: "Senin-Sabtu" },
+    ],
+  },
+  {
+    poli: "Poli KIA",
+    petugas: [
+      { nama: "dr. Hj. Rina Sufriani", hari: "Selasa" },
+      { nama: "dr. Intan Rihhadatul’Aisy", hari: "Senin, Kamis, dan Sabtu" },
+      { nama: "Elis Setiawati, S.Keb., Bdn.", hari: "KIA: Senin, Selasa, Kamis-Sabtu; MTBS: Rabu" },
+      { nama: "Ririn Ganjasari, A.Md.Keb.", hari: "KIA: Rabu; MTBS: Senin, Selasa, Kamis-Sabtu" },
+      { nama: "Eli Rahmawati, S.ST.", hari: "Senin-Minggu (khusus pasien rawat jalan PONED: PNC dan rujukan ambulans)" },
+    ],
+  },
+  {
+    poli: "PONED",
+    petugas: [
+      { nama: "Devy Yulianingsih, S.ST., Bdn.", hari: "Senin-Minggu" },
+    ],
+  },
+];

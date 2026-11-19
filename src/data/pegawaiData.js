@@ -525,7 +525,11 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat Ahli Pertama",
     bidang: "Penyakit Menular",
+<<<<<<< Updated upstream
     foto: null,
+=======
+    foto: "/pegawai/DENI MARTA DINANGSAH, S.Kep.,Ners.png",
+>>>>>>> Stashed changes
   },
   {
     id: 45,
@@ -561,7 +565,11 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Penata Layanan Operasional",
     bidang: "Manajemen",
+<<<<<<< Updated upstream
     foto: null,
+=======
+    foto: "/pegawai/IMAM RAMADHAN, S.Kom.png",
+>>>>>>> Stashed changes
   },
   {
     id: 48,
@@ -572,8 +580,13 @@ export const pegawaiData = [
     gaji: "-",
     eselon: "NON",
     jabatan: "Operator Layanan Operasional",
+<<<<<<< Updated upstream
     bidang: "Support",
     foto: null,
+=======
+    bidang: "Manajemen",
+    foto: "/pegawai/INDRA NUGRAHA.png",
+>>>>>>> Stashed changes
   },
   {
     id: 49,
@@ -851,4 +864,10 @@ export const pegawaiData = [
     bidang: "Support",
     foto: null,
   },
-];
+].map((pegawai) => ({
+  ...pegawai,
+  foto:
+    pegawai.foto === "/pegawai/"
+      ? `/pegawai/${pegawai.nama}.png`
+      : pegawai.foto,
+}));

@@ -123,35 +123,35 @@ export default function OrgSection() {
           </p>
         </div>
 
-        {/* Org Chart - scrollable */}
-        <div className="overflow-x-auto pb-4">
-          <div className="min-w-[900px] flex flex-col items-center">
+        {/* Org Chart */}
+        <div className="pb-4">
+          <div className="w-full md:min-w-[900px] flex flex-col items-center">
 
             {/* Level 1: Kepala Puskesmas */}
             <OrgBox
               title={orgData.kepala.jabatan}
               subtitle={orgData.kepala.nama}
               colorClass="bg-emerald-800 text-white border-emerald-900"
-              className="px-6 py-3 min-w-[260px] shadow-lg"
+              className="w-full max-w-[260px] px-4 sm:px-6 py-3 shadow-lg"
             />
 
             {/* Connector down from Kepala */}
             <VLine height="h-8" />
 
             {/* Horizontal bar across all klasters */}
-            <div className="relative w-full" style={{ maxWidth: '85%' }}>
+            <div className="relative w-full md:w-[85%]">
               <div className="h-0.5 bg-gray-300 w-full"></div>
             </div>
 
             {/* Level 2: Klaster PJ boxes */}
-            <div className="flex justify-center w-full" style={{ maxWidth: '95%' }}>
+            <div className="flex flex-col md:flex-row items-center justify-center w-full md:w-[95%] gap-6 md:gap-0">
               {orgData.klaster.map((klaster, idx) => (
-                <div key={klaster.id} className="flex flex-col items-center flex-1">
+                <div key={klaster.id} className="flex flex-col items-center w-full md:flex-1">
                   {/* Vertical connector from horizontal bar */}
                   <VLine height="h-6" />
 
                   {/* PJ Box */}
-                  <div className={`rounded-lg shadow-md border-2 ${klaster.borderColor} ${klaster.color} text-white text-center px-2 py-2.5 min-w-[130px] max-w-[160px]`}>
+                  <div className={`rounded-lg shadow-md border-2 ${klaster.borderColor} ${klaster.color} text-white text-center px-2 py-2.5 w-full max-w-[160px]`}>
                     <div className="font-bold text-[10px] leading-tight whitespace-pre-line">{klaster.nama}</div>
                     <div className="w-full h-px bg-white/30 my-1.5"></div>
                     <div className="text-[9px] opacity-90 font-semibold">PJ:</div>
@@ -162,11 +162,11 @@ export default function OrgSection() {
                   <VLine height="h-5" />
 
                   {/* Koordinator list */}
-                  <div className="space-y-1.5 w-full px-1">
+                  <div className="space-y-1.5 w-full max-w-[340px] md:px-1">
                     {klaster.koordinator.map((k, i) => (
                       <div
                         key={i}
-                        className={`relative rounded-md border ${klaster.borderColor} bg-white shadow-sm text-center px-2 py-1.5 mx-auto max-w-[155px]`}
+                        className={`relative rounded-md border ${klaster.borderColor} bg-white shadow-sm text-center px-2 py-1.5 mx-auto w-full md:max-w-[155px]`}
                       >
                         {/* Small connector line on top */}
                         {i > 0 && (

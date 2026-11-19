@@ -31,6 +31,7 @@ export default function ContactLocationSection({ onOpenEmergency }) {
           subtitle="Kami selalu terbuka mendengarkan aspirasi, kritik, dan masukan masyarakat demi pelayanan yang semakin prima."
         />
 
+<<<<<<< Updated upstream
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Column: Contact Cards & Info (5 cols) */}
@@ -41,6 +42,28 @@ export default function ContactLocationSection({ onOpenEmergency }) {
               <div className="flex items-start gap-3.5">
                 <div className="w-10 h-10 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
                   <MapPinIcon className="w-5 h-5" />
+=======
+      {/* ── BAGIAN 1: Cakupan Wilayah + Map ── */}
+      <div className="py-14 lg:py-16 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+            {/* Kiri — info wilayah */}
+            <div>
+              <Reveal dir="up">
+                <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-3">Cakupan Wilayah Binaan</p>
+                <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-3">
+                  Wilayah Kerja & Demografi Masyarakat
+                </h2>
+                <p className="text-sm text-gray-600 leading-relaxed mb-10">
+                  Melayani dan mendampingi kesehatan keluarga di 8 desa binaan Kecamatan Sukamulya.
+                </p>
+              </Reveal>
+
+              <Reveal dir="up" delay={100}>
+                <div className="grid grid-cols-3 gap-8 pb-10 border-b border-gray-100 mb-10">
+                  {coverageStats.map((s) => <CountStat key={s.label} stat={s} />)}
+>>>>>>> Stashed changes
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-slate-900">Alamat Gedung Puskesmas</h4>
@@ -58,6 +81,23 @@ export default function ContactLocationSection({ onOpenEmergency }) {
                   </a>
                 </div>
               </div>
+<<<<<<< Updated upstream
+=======
+            </Reveal>
+
+          </div>
+        </div>
+      </div>
+
+      {/* ── BAGIAN 2: Kontak & Form Pengaduan ── */}
+      <div className="py-14 lg:py-16 bg-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+
+          <Reveal dir="up">
+            <div className="mb-10">
+              <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-2">Hubungi Kami</p>
+              <h2 className="text-2xl sm:text-3xl font-black text-gray-900">Informasi Kontak & Pengaduan</h2>
+>>>>>>> Stashed changes
             </div>
 
             {/* Direct Hotlines Card */}

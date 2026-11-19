@@ -33,9 +33,14 @@ export default function NewsSection() {
   const displayNews = newsList.slice(0, 3);
 
   return (
+<<<<<<< Updated upstream
     <section id="edukasi" className="py-16 lg:py-20 bg-white border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+=======
+    <section id="edukasi" className="py-14 lg:py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+>>>>>>> Stashed changes
 
           {/* ---- BERITA & INFORMASI ---- */}
           <div className="lg:col-span-7">
