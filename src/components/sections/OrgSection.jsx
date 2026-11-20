@@ -109,7 +109,7 @@ function VLine({ height = 'h-6' }) {
 
 export default function OrgSection() {
   return (
-    <section id="struktur" className="py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white border-t border-gray-100">
+    <section id="struktur" className="py-12 lg:py-14 bg-gradient-to-b from-gray-50 to-white border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-5">
 
         {/* Section header */}

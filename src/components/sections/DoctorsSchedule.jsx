@@ -32,6 +32,7 @@ export default function DoctorsSchedule() {
   const displayDoctors = doctorsList.slice(0, 4);
 
   return (
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     <section id="jadwal-dokter" className="py-16 lg:py-20 bg-gray-50 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,6 +40,10 @@ export default function DoctorsSchedule() {
     <section id="jadwal-dokter" className="py-12 lg:py-14 bg-gray-50 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
 >>>>>>> Stashed changes
+=======
+    <section id="jadwal-dokter" className="py-12 lg:py-14 bg-gray-50 border-t border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+>>>>>>> recovery-project
         
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">

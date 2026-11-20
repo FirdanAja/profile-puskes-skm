@@ -36,52 +36,52 @@ const bidangStyles = {
   "Manajemen": {
     badge: "bg-emerald-50 text-emerald-700 border-emerald-200",
     headerGrad: "from-emerald-600 via-teal-600 to-emerald-700",
-    icon: "📋",
+    
   },
   "Ibu dan Anak": {
     badge: "bg-pink-50 text-pink-700 border-pink-200",
     headerGrad: "from-pink-600 via-rose-500 to-pink-700",
-    icon: "👶",
+   
   },
   "Dewasa & Lansia": {
     badge: "bg-blue-50 text-blue-700 border-blue-200",
     headerGrad: "from-blue-600 via-indigo-600 to-blue-700",
-    icon: "🩺",
+    
   },
   "Penyakit Menular": {
     badge: "bg-amber-50 text-amber-700 border-amber-200",
     headerGrad: "from-amber-600 via-orange-500 to-amber-700",
-    icon: "🛡️",
+   
   },
   "Kefarmasian": {
     badge: "bg-purple-50 text-purple-700 border-purple-200",
     headerGrad: "from-purple-600 via-violet-600 to-purple-700",
-    icon: "💊",
+    
   },
   "Kesehatan Gigi": {
     badge: "bg-cyan-50 text-cyan-700 border-cyan-200",
     headerGrad: "from-cyan-600 via-teal-600 to-cyan-700",
-    icon: "🦷",
+    
   },
   "Gawat Darurat": {
     badge: "bg-red-50 text-red-700 border-red-200",
     headerGrad: "from-red-600 via-rose-600 to-red-700",
-    icon: "🚑",
+    
   },
   "Laboratorium": {
     badge: "bg-indigo-50 text-indigo-700 border-indigo-200",
     headerGrad: "from-indigo-600 via-blue-600 to-indigo-700",
-    icon: "🔬",
+    
   },
   "Gizi": {
     badge: "bg-orange-50 text-orange-700 border-orange-200",
     headerGrad: "from-orange-600 via-amber-600 to-orange-700",
-    icon: "🥗",
+   
   },
   "Support": {
     badge: "bg-gray-100 text-gray-700 border-gray-200",
     headerGrad: "from-slate-700 via-gray-700 to-slate-800",
-    icon: "🏢",
+   
   },
 };
 
@@ -285,9 +285,12 @@ function PegawaiDetailModal({ pegawai, onClose }) {
   );
 }
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 // ── Pegawai Card Component ──────────────────────────────────────────────────────
 =======
+=======
+>>>>>>> recovery-project
 // ── Kepala Puskesmas Hero Card ──────────────────────────────────────────────────
 function KepalaPuskesmasCard({ pegawai, onSelect }) {
   const [imgError, setImgError] = useState(false);
@@ -400,7 +403,10 @@ function KepalaPuskesmasCard({ pegawai, onSelect }) {
     </div>
   );
 }
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> recovery-project
 function PegawaiCard({ pegawai, onSelect, index = 0 }) {
   const [imgError, setImgError] = useState(false);
   const style = bidangStyles[pegawai.bidang] || bidangStyles["Support"];
@@ -410,8 +416,9 @@ function PegawaiCard({ pegawai, onSelect, index = 0 }) {
     <div
       onClick={() => onSelect(pegawai)}
       style={{ animationDelay: `${(index % 8) * 70}ms` }}
-      className="group relative bg-white rounded-2xl shadow-xs border border-gray-200/90 overflow-hidden hover:shadow-2xl hover:shadow-emerald-500/15 hover:border-emerald-300 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between cursor-pointer animate-card-in"
+      className="group cursor-pointer animate-card-in"
     >
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       {/* Top accent bar (klaster color) */}
       <div className={`h-1 w-full bg-gradient-to-r ${style.headerGrad}`} />
@@ -446,43 +453,30 @@ function PegawaiCard({ pegawai, onSelect, index = 0 }) {
               <EyeIcon className="w-4 h-4 text-emerald-600" />
               Lihat Detail
             </span>
+=======
+      {/* Foto */}
+      <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-white mb-0" style={{backgroundColor:'#ffffff'}}>
+        {hasPhoto ? (
+          <img
+            src={pegawai.foto}
+            alt={pegawai.nama}
+            loading="lazy"
+            onError={() => setImgError(true)}
+            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-50 flex flex-col items-center justify-center">
+            <UserIcon className="w-12 h-12 text-gray-200" />
+>>>>>>> recovery-project
           </div>
-        </div>
-
-        {/* Info Section: All Badges Placed Neatly Below the Photo (Zero Overlap!) */}
-        <div className="p-4 sm:p-5">
-          {/* Badges Row */}
-          <div className="flex flex-wrap items-center gap-1.5 mb-2.5">
-            <span className={`inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${style.badge}`}>
-              {pegawai.bidang}
-            </span>
-            {pegawai.eselon && pegawai.eselon !== "NON" && (
-              <span className="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500 text-white shadow-2xs">
-                Eselon {pegawai.eselon}
-              </span>
-            )}
-            {pegawai.golongan && pegawai.golongan !== "-" && (
-              <span className="inline-block px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-medium text-[11px]">
-                Gol: {pegawai.golongan}
-              </span>
-            )}
-          </div>
-
-          {/* Nama Pegawai */}
-          <h3
-            className="font-bold text-sm sm:text-base text-gray-900 group-hover:text-emerald-700 transition-colors mb-1 leading-snug line-clamp-2"
-            title={pegawai.nama}
-          >
-            {pegawai.nama}
-          </h3>
-
-          {/* Jabatan */}
-          <p className="text-xs sm:text-sm text-emerald-700 font-medium line-clamp-2">
-            {pegawai.jabatan}
-          </p>
-        </div>
+        )}
+        {/* Gradasi bawah */}
+        <div className="absolute inset-x-0 bottom-0 h-12 sm:h-28 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none" />
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-emerald-600/0 group-hover:bg-emerald-600/10 transition-colors duration-300 pointer-events-none" />
       </div>
 
+<<<<<<< HEAD
       {/* Card Footer */}
       <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-0 flex items-center justify-between text-xs border-t border-gray-50 mt-1 pt-3">
         <span className="text-[11px] text-gray-400">UPTD Sukamulya</span>
@@ -515,13 +509,18 @@ function PegawaiCard({ pegawai, onSelect, index = 0 }) {
         <div className="absolute inset-0 bg-emerald-600/0 group-hover:bg-emerald-600/10 transition-colors duration-300 pointer-events-none" />
       </div>
 
+=======
+>>>>>>> recovery-project
       {/* Nama & Jabatan */}
       <div className="pt-1 pb-4 border-b border-gray-100 group-hover:border-emerald-200 transition-colors">
         <h3 className="font-bold text-[10px] sm:text-sm text-gray-900 group-hover:text-emerald-700 transition-colors leading-snug mb-0.5 line-clamp-2">
           {pegawai.nama}
         </h3>
         <p className="text-[9px] sm:text-xs text-gray-400 line-clamp-1">{pegawai.jabatan}</p>
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> recovery-project
       </div>
     </div>
   );
@@ -628,6 +627,7 @@ export default function PegawaiSection() {
   }, [groupedPegawai]);
 
   return (
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     <section id="pegawai" className="py-14 sm:py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -635,18 +635,22 @@ export default function PegawaiSection() {
     <section id="pegawai" className="py-14 sm:py-20 bg-white border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
 >>>>>>> Stashed changes
+=======
+    <section id="pegawai" className="py-14 sm:py-20 bg-white border-t border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+>>>>>>> recovery-project
 
         {/* Section header */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold mb-3">
-            <span>👥</span> Tenaga Kerja Puskesmas
+        <div className="mb-12">
+          <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-3">Tim Kami</p>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900">
+              Daftar Pegawai &<br className="hidden sm:block"/> Tenaga Kesehatan
+            </h2>
+            <p className="text-sm text-gray-400 max-w-xs sm:text-right leading-relaxed">
+              Klik foto untuk melihat profil lengkap pegawai.
+            </p>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
-            Daftar Pegawai & Tenaga Kesehatan
-          </h2>
-          <p className="text-sm sm:text-base text-gray-600 mt-2.5 max-w-2xl mx-auto">
-            Profil pegawai dan tenaga profesional yang mengabdi melayani masyarakat UPTD Puskesmas Sukamulya. Klik kartu untuk melihat detail profil.
-          </p>
         </div>
 
         {/* Search bar */}
@@ -712,36 +716,42 @@ export default function PegawaiSection() {
           </div>
         </div>
 
+        {/* Kepala Puskesmas — ditampilkan terpisah di atas */}
+        {(() => {
+          const kepala = pegawaiData.find(p => p.jabatan.toLowerCase().includes('kepala uptd'));
+          return kepala ? <KepalaPuskesmasCard pegawai={kepala} onSelect={setSelectedPegawai} /> : null;
+        })()}
+
         {/* Pegawai List / Display */}
         {filteredData.length > 0 ? (
           viewMode === "card" ? (
             /* Card View grouped by bidang if "Semua" is active, or flat grid if specific bidang */
             selectedBidang === "Semua" && !searchQuery ? (
-              <div className="space-y-12">
+              <div className="space-y-16">
                 {sortedBidang.map((bidang) => {
                   const style = bidangStyles[bidang] || bidangStyles["Support"];
                   return (
-                    <div key={bidang} className="bg-white/70 p-6 sm:p-7 rounded-3xl border border-gray-100 shadow-2xs">
-                      <div className="flex items-center justify-between mb-6 pb-3 border-b border-gray-100">
-                        <div className="flex items-center gap-3">
-                          <span className="text-xl">{style.icon}</span>
-                          <div>
-                            <h3 className="text-lg font-bold text-gray-900">
-                              Klaster {bidang}
-                            </h3>
-                            <p className="text-xs text-gray-400">Tenaga pengelola & pelayanan</p>
-                          </div>
+                    <div key={bidang}>
+                      {/* Group header */}
+                      <div className="flex items-center justify-between mb-6">
+                        <div>
+                          <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-0.5">Klaster</p>
+                          <h3 className="text-lg font-black text-gray-900">{bidang}</h3>
                         </div>
-                        <span className="text-xs font-semibold px-3 py-1 rounded-full bg-gray-100 text-gray-600">
-                          {groupedPegawai[bidang]?.length || 0} Pegawai
+                        <span className="text-xs font-bold text-gray-400 border-b border-gray-200 pb-0.5">
+                          {groupedPegawai[bidang]?.length || 0} pegawai
                         </span>
                       </div>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
 =======
                       <div className="grid grid-cols-3 gap-3 sm:gap-6 lg:grid-cols-4 bg-white">
 >>>>>>> Stashed changes
+=======
+                      <div className="grid grid-cols-3 gap-3 sm:gap-6 lg:grid-cols-4 bg-white">
+>>>>>>> recovery-project
                         {groupedPegawai[bidang]?.map((pegawai, idx) => (
                           <PegawaiCard
                             key={pegawai.id}

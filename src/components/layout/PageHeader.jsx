@@ -21,11 +21,15 @@ export default function PageHeader({
       </div>
 
       {/* Breadcrumb — mepet atas, setelah navbar */}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-24">
 =======
       <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-20 pt-24">
 >>>>>>> Stashed changes
+=======
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-20 pt-24">
+>>>>>>> recovery-project
         {breadcrumbs.length > 0 && (
           <div className="flex items-center gap-1.5 flex-wrap">
             {breadcrumbs.map((crumb, i) => (
@@ -50,11 +54,15 @@ export default function PageHeader({
       </div>
 
     
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       <div className="relative z-10 mt-auto max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-10">
 =======
       <div className="relative z-10 mt-auto max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-20 pb-10">
 >>>>>>> Stashed changes
+=======
+      <div className="relative z-10 mt-auto max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-20 pb-10">
+>>>>>>> recovery-project
         <h1 className="text-5xl sm:text-6xl lg:text-6xl font-black text-white leading-tight max-w-2xl">
           {title}
         </h1>

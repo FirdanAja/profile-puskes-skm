@@ -5,11 +5,15 @@ import { puskesmasInfo } from '../../data/puskesmasData';
 export default function EmergencyCallout({ onOpenEmergency }) {
   return (
     <section className="py-8 bg-slate-900">
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 =======
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
 >>>>>>> Stashed changes
+=======
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+>>>>>>> recovery-project
         <div className="rounded-3xl bg-gradient-to-r from-rose-900 via-rose-800 to-red-950 p-6 sm:p-8 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
           
           <div className="flex items-center gap-5">

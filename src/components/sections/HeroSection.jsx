@@ -59,11 +59,15 @@ export default function HeroSection({ onOpenEmergency, onSearchService }) {
       ))}
 
       {/* Hero Content */}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
 =======
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 pt-28 pb-20">
 >>>>>>> Stashed changes
+=======
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 pt-28 pb-20">
+>>>>>>> recovery-project
         <div className="max-w-4xl mx-auto flex flex-col items-center justify-center text-center space-y-6">
 
           <h3 className="text-2xl sm:text-5xl md:text-6xl lg:text-5xl font-black text-white leading-tight tracking-tight drop-shadow-lg">

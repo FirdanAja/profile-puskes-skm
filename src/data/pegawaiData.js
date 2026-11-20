@@ -1,5 +1,17 @@
 export const pegawaiData = [
   {
+    id: 3,
+    nama: "dr. Hj. YATI ROCHDIYAWATI HADIYAT, MKM.",
+    usia: 54,
+    golongan: "IV/a",
+    masaKerja: "23,08 Th",
+    gaji: "4,920,200",
+    eselon: "NON",
+    jabatan: "Kepala UPTD Puskesmas / Dokter Ahli Muda",
+    bidang: "Manajemen",
+    foto: "/pegawai/dr. Hj. YATI ROCHDIYAWATI HADIYAT, MKM..png",
+  },
+  {
     id: 1,
     nama: "MONIKA SUSILAWATI, Am.Keb.",
     usia: 55,
@@ -9,7 +21,7 @@ export const pegawaiData = [
     eselon: "IV.b",
     jabatan: "Kepala Sub Bagian Tata Usaha",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/MONIKA SUSILAWATI, Am.Keb..png",
   },
   {
     id: 2,
@@ -21,19 +33,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Dokter Gigi Ahli Madya",
     bidang: "Kesehatan Gigi",
-    foto: null,
-  },
-  {
-    id: 3,
-    nama: "dr. Hj. YATI ROCHDIYAWATI HADIYAT, MKM.",
-    usia: 54,
-    golongan: "IV/a",
-    masaKerja: "23,08 Th",
-    gaji: "4,920,200",
-    eselon: "NON",
-    jabatan: "Kepala UPTD Puskesmas / Dokter Ahli Muda",
-    bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Dokter Ahli Madya",
     bidang: "Dewasa & Lansia",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat Penyelia",
     bidang: "Dewasa & Lansia",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 6,
@@ -69,7 +69,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Penyelia",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 7,
@@ -81,7 +81,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Terapis Gigi dan Mulut Penyelia",
     bidang: "Kesehatan Gigi",
-    foto: null,
+    foto: "/pegawai/NANI NURHAYANI, AMKG.png",
   },
   {
     id: 8,
@@ -93,7 +93,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Nutrisionis Penyelia",
     bidang: "Gizi",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 9,
@@ -105,7 +105,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Ahli Muda",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/DEVY YULIANINGSIH, S.ST., Bdn..png",
   },
   {
     id: 10,
@@ -117,7 +117,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Ahli Muda",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 11,
@@ -129,7 +129,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Penyelia",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 12,
@@ -141,7 +141,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Penyelia",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/NATHALIA E. JUNARSIH, S.ST., Bdn.png",
   },
   {
     id: 13,
@@ -153,7 +153,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Tenaga Sanitasi Lingkungan Penyelia",
     bidang: "Penyakit Menular",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 14,
@@ -165,7 +165,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat Penyelia",
     bidang: "Dewasa & Lansia",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 15,
@@ -177,7 +177,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Penyelia",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 16,
@@ -189,7 +189,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat Ahli Pertama",
     bidang: "Dewasa & Lansia",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 17,
@@ -201,7 +201,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Apoteker Ahli Pertama",
     bidang: "Kefarmasian",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 18,
@@ -213,7 +213,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat Ahli Pertama",
     bidang: "Gawat Darurat",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 19,
@@ -225,7 +225,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Mahir",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 20,
@@ -237,7 +237,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Mahir",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 21,
@@ -249,7 +249,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Ahli Pertama - Perawat",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 22,
@@ -261,7 +261,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Mahir",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 23,
@@ -273,7 +273,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Pengolah Data dan Informasi",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 24,
@@ -285,7 +285,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Penelaah Teknis Kebijakan",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 25,
@@ -297,7 +297,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Tenaga Promosi Kesehatan dan Ilmu Perilaku Ahli Pertama",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 26,
@@ -309,7 +309,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Mahir",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/AAT SUTIHAT, A.Md.Keb.png",
   },
   {
     id: 27,
@@ -321,7 +321,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Mahir",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/CICIN SRI MULYATI, A.Md.Keb..png",
   },
   {
     id: 28,
@@ -333,7 +333,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Mahir",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/TITIN SETIAWATI, A.Md.Keb.png",
   },
   {
     id: 29,
@@ -345,7 +345,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Mahir",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 30,
@@ -357,7 +357,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Mahir",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 31,
@@ -369,7 +369,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Terampil",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/DWI RAHMAWATISARI, A.Md.Keb., S.Keb..png",
   },
   {
     id: 32,
@@ -381,7 +381,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat Terampil",
     bidang: "Dewasa & Lansia",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 33,
@@ -393,7 +393,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat Terampil",
     bidang: "Penyakit Menular",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 34,
@@ -405,7 +405,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Pengadministrasi Perkantoran",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 35,
@@ -417,7 +417,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat Ahli Pertama",
     bidang: "Dewasa & Lansia",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 36,
@@ -429,7 +429,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Penata Layanan Operasional",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 37,
@@ -441,7 +441,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Penata Layanan Operasional",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 38,
@@ -453,7 +453,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Terampil",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 39,
@@ -465,7 +465,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Terampil",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/KARTIKA KUSUMASTUTI, Amd.Keb.png",
   },
   {
     id: 40,
@@ -477,7 +477,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Ahli Pertama",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 41,
@@ -489,7 +489,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Ahli Pertama",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 42,
@@ -501,7 +501,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Administrator Kesehatan Ahli Pertama",
     bidang: "Kefarmasian",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 43,
@@ -513,7 +513,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Terampil",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 44,
@@ -525,11 +525,15 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat Ahli Pertama",
     bidang: "Penyakit Menular",
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     foto: null,
 =======
     foto: "/pegawai/DENI MARTA DINANGSAH, S.Kep.,Ners.png",
 >>>>>>> Stashed changes
+=======
+    foto: "/pegawai/DENI MARTA DINANGSAH, S.Kep.,Ners.png",
+>>>>>>> recovery-project
   },
   {
     id: 45,
@@ -541,7 +545,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Tenaga Promosi Kesehatan dan Ilmu Perilaku Ahli Pertama",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 46,
@@ -553,7 +557,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Pranata Laboratorium Kesehatan Terampil",
     bidang: "Laboratorium",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 47,
@@ -565,11 +569,15 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Penata Layanan Operasional",
     bidang: "Manajemen",
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     foto: null,
 =======
     foto: "/pegawai/IMAM RAMADHAN, S.Kom.png",
 >>>>>>> Stashed changes
+=======
+    foto: "/pegawai/IMAM RAMADHAN, S.Kom.png",
+>>>>>>> recovery-project
   },
   {
     id: 48,
@@ -580,6 +588,7 @@ export const pegawaiData = [
     gaji: "-",
     eselon: "NON",
     jabatan: "Operator Layanan Operasional",
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     bidang: "Support",
     foto: null,
@@ -587,6 +596,10 @@ export const pegawaiData = [
     bidang: "Manajemen",
     foto: "/pegawai/INDRA NUGRAHA.png",
 >>>>>>> Stashed changes
+=======
+    bidang: "Manajemen",
+    foto: "/pegawai/INDRA NUGRAHA.png",
+>>>>>>> recovery-project
   },
   {
     id: 49,
@@ -598,7 +611,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Terampil",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 50,
@@ -610,7 +623,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Epidemiolog Kesehatan Ahli Pertama",
     bidang: "Penyakit Menular",
-    foto: null,
+    foto: "/pegawai/TITI SUPRIATI, S.KM.png",
   },
   {
     id: 51,
@@ -622,7 +635,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Terampil",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 52,
@@ -634,7 +647,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat Ahli Pertama",
     bidang: "Gawat Darurat",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 53,
@@ -646,7 +659,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat Ahli Pertama",
     bidang: "Dewasa & Lansia",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 54,
@@ -658,7 +671,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Pengelola Layanan Operasional",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 55,
@@ -670,7 +683,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat Terampil",
     bidang: "Dewasa & Lansia",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 56,
@@ -682,7 +695,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Pengelola Layanan Operasional",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 57,
@@ -694,7 +707,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Penata Layanan Operasional",
     bidang: "Manajemen",
-    foto: "/pegawai/fifi f.png",
+    foto: "/pegawai/fifi fauziyah.png",
   },
   {
     id: 58,
@@ -706,7 +719,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perekam Medis Terampil",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 59,
@@ -718,7 +731,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Terampil",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 60,
@@ -730,7 +743,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan Terampil",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 61,
@@ -742,7 +755,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Administrator Kesehatan",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 62,
@@ -754,7 +767,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Tenaga Promosi Kesehatan dan Ilmu Perilaku",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 63,
@@ -766,7 +779,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat",
     bidang: "Dewasa & Lansia",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 64,
@@ -778,7 +791,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 65,
@@ -790,7 +803,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Administrasi Perkantoran",
     bidang: "Manajemen",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 66,
@@ -802,7 +815,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Asisten Apoteker",
     bidang: "Kefarmasian",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 67,
@@ -814,7 +827,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Bidan",
     bidang: "Ibu dan Anak",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 68,
@@ -826,7 +839,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Perawat",
     bidang: "Dewasa & Lansia",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 69,
@@ -838,7 +851,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Asisten Apoteker",
     bidang: "Kefarmasian",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 70,
@@ -850,7 +863,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Penjaga Keamanan",
     bidang: "Support",
-    foto: null,
+    foto: "/pegawai/",
   },
   {
     id: 71,
@@ -862,7 +875,7 @@ export const pegawaiData = [
     eselon: "NON",
     jabatan: "Tenaga Kebersihan",
     bidang: "Support",
-    foto: null,
+    foto: "/pegawai/",
   },
 ].map((pegawai) => ({
   ...pegawai,

@@ -5,6 +5,7 @@ import { StarIcon } from '../common/Icons';
 
 export default function TestimonialsSection() {
   return (
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     <section className="py-20 lg:py-28 bg-slate-50 border-t border-slate-200/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,6 +13,10 @@ export default function TestimonialsSection() {
     <section className="py-14 lg:py-16 bg-slate-50 border-t border-slate-200/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
 >>>>>>> Stashed changes
+=======
+    <section className="py-14 lg:py-16 bg-slate-50 border-t border-slate-200/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+>>>>>>> recovery-project
         
         <SectionTitle
           badge="Suara Masyarakat"

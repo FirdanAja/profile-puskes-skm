@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRightIcon, CheckCircleIcon } from '../common/Icons';
+import Reveal from '../common/Reveal';
 
 // Icon components for each service
 const WalkInIcon = () => (
@@ -122,6 +123,7 @@ const services = [
 
 export default function ServicesSection({ initialSearch = "" }) {
   return (
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     <section id="layanan" className="py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -129,10 +131,15 @@ export default function ServicesSection({ initialSearch = "" }) {
     <section id="layanan" className="py-12 lg:py-14 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
 >>>>>>> Stashed changes
+=======
+    <section id="layanan" className="py-12 lg:py-14 bg-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+>>>>>>> recovery-project
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 
           {/* Left: heading */}
-          <div className="lg:col-span-3 space-y-4">
+          <Reveal dir="left" className="lg:col-span-3">
+            <div className="space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">
               Layanan Kami
             </div>
@@ -149,10 +156,11 @@ export default function ServicesSection({ initialSearch = "" }) {
               Lihat Semua Layanan
               <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </a>
-          </div>
+            </div>
+          </Reveal>
 
           {/* Right: service cards grid */}
-          <div className="lg:col-span-9">
+          <Reveal dir="right" delay={200} className="lg:col-span-9">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {services.map((svc) => (
                 <div
@@ -171,7 +179,7 @@ export default function ServicesSection({ initialSearch = "" }) {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
 
         </div>
       </div>
