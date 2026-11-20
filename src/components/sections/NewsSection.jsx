@@ -8,7 +8,7 @@ export default function NewsSection() {
 
   return (
     <section id="edukasi" className="py-14 lg:py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
 
         {/* Header */}
         <Reveal dir="up">

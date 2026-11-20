@@ -1,334 +1,249 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import PageHeader from '../components/layout/PageHeader';
-import { puskesmasInfo } from '../data/puskesmasData';
-import EmergencyModal from '../components/modals/EmergencyModal';
-import Reveal from '../components/common/Reveal';
+import { CheckCircleIcon } from '../components/common/Icons';
+import {
+  alurPelayananData,
+  alurPelayananTips,
+} from '../data/alurPelayananData';
 
-// ─── Warna ────────────────────────────────────────────────────────────────────
-const Y = { fill:'#fef9c3', stroke:'#ca8a04', text:'#713f12' };
-const G = { fill:'#d1fae5', stroke:'#059669', text:'#064e3b' };
-const B = { fill:'#dbeafe', stroke:'#3b82f6', text:'#1e3a8a' };
-const O = { fill:'#fee2e2', stroke:'#ef4444', text:'#7f1d1d' };
+const stepIcons = [
+  '🎫', '⚖️', '🩺', '📋',
+  '👨‍⚕️', '🔬', '💊', '🏡',
+];
 
-// ─── Primitif SVG ────────────────────────────────────────────────────────────
-// Box: rect + teks multiline
-function Box({ x, y, w, h=36, c=Y, text='' }) {
-  const lines = text.split('|');
-  const n = lines.length;
-  const cy = y + h/2;
+const stepColors = [
+  'bg-teal-50 text-teal-700',
+  'bg-blue-50 text-blue-700',
+  'bg-rose-50 text-rose-600',
+  'bg-violet-50 text-violet-700',
+  'bg-orange-50 text-orange-600',
+  'bg-sky-50 text-sky-700',
+  'bg-green-50 text-green-700',
+  'bg-emerald-50 text-emerald-700',
+];
+
+function ServiceCard({ step, index }) {
   return (
-    <g>
-      <rect x={x} y={y} width={w} height={h} rx="3"
-        fill={c.fill} stroke={c.stroke} strokeWidth="1.6"/>
-      {lines.map((l,i) => (
-        <text key={i}
-          x={x+w/2} y={cy + (i-(n-1)/2)*14}
-          textAnchor="middle" dominantBaseline="middle"
-          fontSize="9.5" fontWeight="700" fill={c.text}>{l.trim()}</text>
-      ))}
-    </g>
+    <article className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-900/5">
+      <div className="absolute right-4 top-3 text-5xl font-black text-gray-50 transition-colors group-hover:text-emerald-50">
+        {String(index + 1).padStart(2, '0')}
+      </div>
+
+      <div className="relative z-10">
+        <div className="flex items-center justify-between">
+          <div className={`flex h-14 w-14 items-center justify-center rounded-2xl text-3xl ${stepColors[index]}`}>
+            {stepIcons[index]}
+          </div>
+
+          <span className="rounded-full bg-gray-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-gray-400">
+            Tahap {index + 1}
+          </span>
+        </div>
+
+        <h3 className="mt-5 text-base font-extrabold leading-snug text-gray-900 transition-colors group-hover:text-emerald-700">
+          {step.nama}
+        </h3>
+
+        <p className="mt-2 min-h-[60px] text-sm leading-relaxed text-gray-500">
+          {step.deskripsi}
+        </p>
+
+        <div className="my-4 h-px bg-gray-100" />
+
+        <details className="group/detail">
+          <summary className="flex cursor-pointer list-none items-center justify-between text-xs font-bold text-emerald-700">
+            Lihat informasi
+            <span className="transition-transform group-open/detail:rotate-180">↓</span>
+          </summary>
+
+          <div className="mt-4 space-y-3">
+            {step.detail?.map((item, idx) => (
+              <div key={idx} className="flex items-start gap-2 text-xs leading-relaxed text-gray-600">
+                <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </details>
+      </div>
+    </article>
   );
 }
 
-// Diamond keputusan
-function Diam({ x, y, w=80, h=50, c=Y, text='' }) {
-  const cx=x+w/2, cy=y+h/2;
-  const pts=`${cx},${y} ${x+w},${cy} ${cx},${y+h} ${x},${cy}`;
-  const lines = text.split('|');
-  const n = lines.length;
+function TipsCard({ tip }) {
   return (
-    <g>
-      <polygon points={pts} fill={c.fill} stroke={c.stroke} strokeWidth="1.6"/>
-      {lines.map((l,i) => (
-        <text key={i}
-          x={cx} y={cy+(i-(n-1)/2)*13}
-          textAnchor="middle" dominantBaseline="middle"
-          fontSize="9.5" fontWeight="700" fill={c.text}>{l.trim()}</text>
-      ))}
-    </g>
-  );
-}
+    <article className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition hover:shadow-md">
+      <div className="flex items-center gap-3">
+        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-lg font-black text-emerald-700">
+          {tip.title.charAt(0)}
+        </div>
+        <h3 className="font-bold text-gray-900">{tip.title}</h3>
+      </div>
 
-// Panah lurus dengan marker
-function Arr({ x1,y1,x2,y2,lbl='',lx,ly }) {
-  return (
-    <g>
-      <line x1={x1} y1={y1} x2={x2} y2={y2}
-        stroke="#4b5563" strokeWidth="1.5" markerEnd="url(#mArrow)"/>
-      {lbl && <text x={lx??(x1+x2)/2} y={ly??(y1+y2)/2-5}
-        textAnchor="middle" fontSize="8.5" fontWeight="700" fill="#374151">{lbl}</text>}
-    </g>
-  );
-}
-
-// Polyline dengan panah di ujung
-function Poly({ pts, lbl='', lx, ly }) {
-  const d = pts.map((p,i)=>(i===0?`M${p[0]},${p[1]}`:`L${p[0]},${p[1]}`)).join(' ');
-  const last = pts[pts.length-1];
-  return (
-    <g>
-      <path d={d} fill="none" stroke="#4b5563" strokeWidth="1.5" markerEnd="url(#mArrow)"/>
-      {lbl && <text x={lx??last[0]} y={ly??last[1]-6}
-        textAnchor="middle" fontSize="8.5" fontWeight="700" fill="#374151">{lbl}</text>}
-    </g>
-  );
-}
-
-// Garis tanpa panah
-function Ln({ x1,y1,x2,y2 }) {
-  return <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#4b5563" strokeWidth="1.5"/>;
-}
-
-// ─── Flowchart ───────────────────────────────────────────────────────────────
-// Koordinat grid (center dari setiap kolom & baris)
-// Kolom X (left edge of box):
-const X = {
-  poned:    10,   // Poned
-  pasien:   10,   // Pasien Datang
-  gawat:    120,  // Diamond Gawat / Infeksius / Kohorting / PollTB
-  rekam:    240,  // Rekam Medik / Pendaftaran
-  nurse:    370,  // Nurse Station
-  poli:     490,  // Poli group
-  farmasi:  630,  // Farmasi / USG / Konseling
-  pulang:   760,  // Pulang / Rujukan
-  ugd:      10,   // UGD (row atas kiri)
-  kasir:    190,  // KASIR
-  lab:      360,  // Lab
-  rujukRS:  510,  // Rujuk RS
-};
-
-// ROW Y (top edge of box):
-const R = {
-  top:   75,   // UGD / KASIR / Lab / Rujuk RS
-  r2:    160,  // Pasien Datang / Gawat?
-  r3:    245,  // Infeksius? / Rekam Medik / Nurse / Poli1 / USG
-  r4:    310,  // Pendaftaran / Poli2
-  r5:    375,  // Kohorting / Poli3
-  r6:    440,  // Poli4
-  r7:    505,  // PollTB / Poli5
-  r8:    570,  // Konseling / fork
-  r9:    635,  // Mendapat Obat / Rujuk
-  r10:   700,  // Pulang (dari obat)
-};
-
-function FlowChart() {
-  // Lebar box
-  const Wb = { s:70, m:90, l:110, xl:130 };
-
-  return (
-    <svg viewBox="0 0 900 780" width="100%"
-      style={{ minWidth:700, background:'linear-gradient(135deg,#f0fdf4,#ecfdf5)',
-               border:'2px solid #6ee7b7' }}>
-      <defs>
-        <marker id="mArrow" viewBox="0 0 10 10" refX="8" refY="5"
-          markerWidth="6" markerHeight="6" orient="auto">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill="#4b5563"/>
-        </marker>
-      </defs>
-
-      {/* HEADER */}
-      <rect x="0" y="0" width="900" height="62" fill="#059669"/>
-      <text x="450" y="20" textAnchor="middle" fontSize="14" fontWeight="800" fill="white">UPTD PUSKESMAS SUKAMULYA</text>
-      <text x="450" y="36" textAnchor="middle" fontSize="9.5" fill="#a7f3d0" fontStyle="italic">Amanah · Setia · Ramah · Inovatif (ASRI)</text>
-      <text x="450" y="52" textAnchor="middle" fontSize="11" fontWeight="700" fill="#fef08a">Alur Pelayanan PUSKESMAS</text>
-
-      {/* ═══ ROW ATAS: UGD ← KASIR → Lab → Rujuk RS ═══════════════════════ */}
-      {/* UGD */}
-      <Box x={20}  y={R.top} w={120} h={42} c={O} text="Ruang Tindakan /|Gawat Darurat"/>
-      {/* KASIR */}
-      <Box x={230} y={R.top} w={90}  h={36} c={Y} text="KASIR"/>
-      <text x={275} y={R.top+44} textAnchor="middle" fontSize="8" fill="#713f12">Pasien Umum</text>
-      {/* Lab */}
-      <Box x={420} y={R.top} w={100} h={36} c={B} text="Laboratorium"/>
-      {/* Rujuk RS */}
-      <Box x={620} y={R.top} w={100} h={42} c={O} text="Rujuk|Rumah Sakit"/>
-
-      {/* KASIR → UGD (kiri) */}
-      <Arr x1={230} y1={R.top+18} x2={140} y2={R.top+18} lbl="Ya" lx={185} ly={R.top+12}/>
-      {/* KASIR → Lab (kanan) */}
-      <Arr x1={320} y1={R.top+18} x2={420} y2={R.top+18}/>
-      {/* Lab → Rujuk RS */}
-      <Arr x1={520} y1={R.top+18} x2={620} y2={R.top+18}/>
-
-      {/* ═══ PASIEN DATANG ══════════════════════════════════════════════════ */}
-      <Box x={20} y={R.r2} w={100} h={36} c={G} text="Pasien|Datang"/>
-      {/* Pasien → Gawat? */}
-      <Arr x1={120} y1={R.r2+18} x2={160} y2={R.r2+18}/>
-      {/* Pasien → Inpartu → Poned */}
-      <Arr x1={70} y1={R.r2+36} x2={70} y2={R.r2+80} lbl="Inpartu" lx={50} ly={R.r2+60}/>
-      <Box x={20} y={R.r2+80} w={100} h={36} c={Y} text="Poned"/>
-
-      {/* ═══ DIAMOND GAWAT? ════════════════════════════════════════════════ */}
-      <Diam x={160} y={R.r2-2} w={88} h={56} text="Gawat?"/>
-      {/* Gawat Ya → KASIR (ke atas) */}
-      <Poly pts={[[204,R.r2-2],[204,R.top+18],[230,R.top+18]]} lbl="Ya" lx={210} ly={(R.r2-2+R.top)/2}/>
-      {/* Gawat Tidak → Infeksius? */}
-      <Arr x1={204} y1={R.r2+54} x2={204} y2={R.r3-2} lbl="Tidak" lx={186} ly={(R.r2+54+R.r3-2)/2}/>
-
-      {/* ═══ DIAMOND INFEKSIUS? ════════════════════════════════════════════ */}
-      <Diam x={160} y={R.r3-2} w={88} h={56} text="Infeksius?"/>
-      {/* Infeksius Tidak → Pendaftaran */}
-      <Arr x1={248} y1={R.r3+26} x2={295} y2={R.r3+26} lbl="Tidak" lx={270} ly={R.r3+19}/>
-      {/* Infeksius Ya → Kohorting */}
-      <Arr x1={204} y1={R.r3+54} x2={204} y2={R.r5} lbl="Ya" lx={186} ly={(R.r3+54+R.r5)/2}/>
-
-      {/* ═══ REKAM MEDIK ═══════════════════════════════════════════════════ */}
-      <Box x={295} y={R.r3} w={100} h={36} c={Y} text="Ruang|Rekam Medic"/>
-      {/* KASIR → Rekam Medik (turun) */}
-      <Poly pts={[[275,R.top+52],[275,R.r3+8],[295,R.r3+8]]}/>
-      {/* Rekam Medik → kanan "Alur RM" */}
-      <Arr x1={395} y1={R.r3+18} x2={415} y2={R.r3+18} lbl="Alur RM" lx={405} ly={R.r3+10}/>
-
-      {/* ═══ PENDAFTARAN ════════════════════════════════════════════════════ */}
-      <Box x={295} y={R.r4} w={100} h={40} c={Y} text="Pendaftaran"/>
-      <text x={345} y={R.r4+50} textAnchor="middle" fontSize="8" fill="#713f12">(Alur Pasien)</text>
-      {/* Pendaftaran → Nurse */}
-      <Arr x1={395} y1={R.r4+20} x2={415} y2={R.r4+20}/>
-
-      {/* ═══ NURSE STATION ══════════════════════════════════════════════════ */}
-      <Box x={415} y={R.r4} w={100} h={40} c={Y} text="Nurse|Station"/>
-      {/* Nurse → Poli (ke kanan) */}
-      <Arr x1={515} y1={R.r4+20} x2={535} y2={R.r4+20}/>
-      {/* Nurse → USG (ke atas kanan) */}
-      <Poly pts={[[465,R.r4],[465,R.r3+18],[630,R.r3+18]]}/>
-
-      {/* ═══ POLI GROUP ════════════════════════════════════════════════════ */}
-      {/* Garis vertikal kiri poli */}
-      <Ln x1={535} y1={R.r3+8} x2={535} y2={R.r7+28}/>
-      {[
-        {label:'Poli Umum',   y:R.r3},
-        {label:'Poli Lansia', y:R.r4},
-        {label:'Poli KIA/KB', y:R.r5},
-        {label:'Poli MTBS',   y:R.r6},
-        {label:'Poli Gigi',   y:R.r7},
-      ].map(({label,y},i) => (
-        <g key={label}>
-          <Ln  x1={535} y1={y+14} x2={545} y2={y+14}/>
-          <Arr x1={545} y1={y+14} x2={565} y2={y+14}/>
-          <Box x={565} y={y} w={90} h={28} c={B} text={label}/>
-          {/* Poli → Farmasi */}
-          <Arr x1={655} y1={y+14} x2={680} y2={y+14}/>
-        </g>
-      ))}
-
-      {/* ═══ R. KONSELING TERPADU ════════════════════════════════════════════ */}
-      <rect x={540} y={R.r8} width={110} height={80} rx="3"
-        fill={Y.fill} stroke={Y.stroke} strokeWidth="1.6"/>
-      <text x={595} y={R.r8+14} textAnchor="middle" fontSize="9" fontWeight="700" fill={Y.text}>R. Konseling Terpadu</text>
-      <line x1={544} y1={R.r8+20} x2={646} y2={R.r8+20} stroke={Y.stroke} strokeWidth="0.8" opacity="0.5"/>
-      <text x={595} y={R.r8+33} textAnchor="middle" fontSize="7.5" fill={Y.text}>Pandu PTM / Gizi &amp; Farmasi</text>
-      <text x={595} y={R.r8+46} textAnchor="middle" fontSize="7.5" fill={Y.text}>Kesehatan Lingkungan</text>
-      <text x={595} y={R.r8+59} textAnchor="middle" fontSize="7.5" fill={Y.text}>PROMKES</text>
-      <text x={595} y={R.r8+72} textAnchor="middle" fontSize="7.5" fill={Y.text}>PERKESMAS</text>
-
-      {/* ═══ PELAYANAN USG ══════════════════════════════════════════════════ */}
-      <Box x={680} y={R.r3} w={100} h={36} c={B} text="Pelayanan USG"/>
-
-      {/* ═══ RUANG FARMASI ══════════════════════════════════════════════════ */}
-      <Box x={680} y={R.r4} w={100} h={36} c={Y} text="Ruang|Farmasi"/>
-      {/* Farmasi → Pulang */}
-      <Arr x1={780} y1={R.r4+18} x2={800} y2={R.r4+18}/>
-      <Box x={800} y={R.r4} w={80} h={36} c={G} text="Pulang"/>
-
-      {/* ═══ RUANG RUJUKAN ══════════════════════════════════════════════════ */}
-      <Box x={680} y={R.r6} w={100} h={36} c={O} text="Ruang|Rujukan"/>
-      {/* Garis vertikal kanan poli → Ruang Rujukan */}
-      <Ln x1={680} y1={R.r3+18} x2={680} y2={R.r7+14}/>
-
-      {/* ═══ KOHORTING ══════════════════════════════════════════════════════ */}
-      <Box x={160} y={R.r5} w={88} h={46} c={O} text="Kohorting"/>
-      <text x={204} y={R.r5+58} textAnchor="middle" fontSize="7" fill={O.text}>Pasien Covid → R.Kohorting</text>
-      <text x={204} y={R.r5+68} textAnchor="middle" fontSize="7" fill={O.text}>Proses Layanan dibantu petugas</text>
-      {/* Kohorting → PollTB */}
-      <Arr x1={204} y1={R.r5+46} x2={204} y2={R.r7} lbl="TB?" lx={186} ly={(R.r5+46+R.r7)/2}/>
-
-      {/* ═══ POLL TB ════════════════════════════════════════════════════════ */}
-      <Box x={160} y={R.r7} w={88} h={46} c={O} text="Poll TB"/>
-      <text x={204} y={R.r7+58} textAnchor="middle" fontSize="7" fill={O.text}>Seluruh proses layanan</text>
-      <text x={204} y={R.r7+68} textAnchor="middle" fontSize="7" fill={O.text}>dilayani petugas di Poli TB</text>
-
-      {/* Poll TB → fork */}
-      <Arr x1={204} y1={R.r7+46} x2={204} y2={R.r8+10}/>
-      {/* fork horizontal */}
-      <Ln x1={140} y1={R.r8+10} x2={268} y2={R.r8+10}/>
-      <Arr x1={140} y1={R.r8+10} x2={140} y2={R.r9}/>
-      <Arr x1={268} y1={R.r8+10} x2={268} y2={R.r9}/>
-      {/* Mendapat Obat */}
-      <Box x={100} y={R.r9} w={88} h={36} c={Y} text="Mendapat Obat"/>
-      <Arr x1={144} y1={R.r9+36} x2={144} y2={R.r10}/>
-      <Box x={110} y={R.r10} w={68} h={32} c={G} text="Pulang"/>
-      {/* Rujuk */}
-      <Box x={230} y={R.r9} w={76} h={36} c={O} text="Rujuk"/>
-
-    </svg>
+      <ul className="mt-5 space-y-3">
+        {tip.items.map((item, idx) => (
+          <li key={idx} className="flex items-start gap-2 text-sm leading-relaxed text-gray-500">
+            <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </article>
   );
 }
 
 export default function AlurPelayananPage({ onOpenEmergency }) {
-  const [isEmOpen, setIsEmOpen] = useState(false);
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans">
-      <Navbar onOpenEmergency={onOpenEmergency}/>
+    <div className="min-h-screen bg-white text-gray-800 flex flex-col font-sans">
+      <Navbar onOpenEmergency={onOpenEmergency} />
+
       <PageHeader
         title="Alur Pelayanan Puskesmas"
-        bgImage="/puskesmas.png"
+        bgImage="/puskesmas2.png"
         breadcrumbs={[
-          {label:'Beranda',href:'#'},
-          {label:'Informasi',href:'#'},
-          {label:'Alur Pelayanan',href:'#'},
+          { label: 'Beranda', href: '#' },
+          { label: 'Informasi', href: '#' },
+          { label: 'Alur Pelayanan', href: '#/alur-pelayanan' },
         ]}
-        meta={[{icon:<span>📋</span>, text:'UPTD Puskesmas Sukamulya'}]}
+        meta={[{
+          icon: (
+            <img
+              src="/puskesmas.png"
+              alt=""
+              className="h-5 w-5 rounded-full object-cover border border-white/30"
+            />
+          ),
+          text: 'UPTD Puskesmas Sukamulya',
+        }]}
       />
-      <main className="flex-1 py-14 bg-white">
-        <div className="max-w-6xl mx-auto px-4 lg:px-10">
-          <Reveal dir="up">
-            <div className="text-center mb-8">
-              <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-1">Prosedur</p>
-              <h2 className="text-2xl font-black text-gray-900">Alur Pelayanan Pasien</h2>
+
+      <main className="flex-1">
+        <section id="alur-pelayanan" className="overflow-hidden bg-[#f8faf9] py-16 sm:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#075e50] via-[#087f69] to-[#119b80] p-7 text-white shadow-xl shadow-emerald-900/10 sm:p-10 lg:p-12">
+          <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full border-[40px] border-white/5" />
+          <div className="absolute -bottom-32 right-1/3 h-72 w-72 rounded-full bg-teal-300/10 blur-3xl" />
+
+          <div className="relative z-10 grid items-center gap-5 sm:gap-7 lg:grid-cols-[1.5fr_0.5fr]">
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.15em] text-emerald-50">
+                <span className="h-1.5 w-1.5 rounded-full bg-green-300" />
+                Panduan Pelayanan Pasien
+              </span>
+
+              <h2 className="mt-4 max-w-2xl text-2xl font-black leading-tight tracking-tight sm:text-3xl lg:text-4xl">
+                Pelayanan Kesehatan
+                <span className="mt-1 block text-emerald-200">Lebih Mudah dan Nyaman</span>
+              </h2>
+
+              <p className="mt-3 max-w-xl text-xs leading-relaxed text-emerald-50 sm:text-sm">
+                Kenali tahapan pelayanan di Puskesmas Sukamulya agar kunjungan Anda berjalan lebih mudah, tertib, dan nyaman.
+              </p>
+
+              <div className="mt-5 flex flex-wrap gap-2">
+                <a href="#tahapan-pelayanan" className="rounded-lg bg-white px-4 py-2 text-xs font-bold text-emerald-800 shadow-lg transition hover:-translate-y-0.5 hover:bg-emerald-50">
+                  Lihat Tahapan <span className="ml-2">↓</span>
+                </a>
+                <a href="#kontak" className="rounded-lg border border-white/30 bg-white/10 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/20">
+                  Hubungi Kami
+                </a>
+              </div>
+
+              <div className="mt-5 flex flex-wrap gap-4 border-t border-white/15 pt-4">
+                <div><p className="text-lg font-black">08</p><p className="mt-0.5 text-[10px] text-emerald-100">Tahapan pelayanan</p></div>
+                <div><p className="text-lg font-black">4</p><p className="mt-0.5 text-[10px] text-emerald-100">Prinsip pelayanan</p></div>
+                <div><p className="text-lg font-black">100%</p><p className="mt-0.5 text-[10px] text-emerald-100">Komitmen melayani</p></div>
+              </div>
             </div>
-          </Reveal>
-          <Reveal dir="up" delay={100}>
-            <div className="overflow-x-auto">
-              <FlowChart/>
-            </div>
-          </Reveal>
-          <Reveal dir="up" delay={150}>
-            <div className="mt-5 flex flex-wrap gap-4 justify-center text-xs text-gray-500">
-              {[
-                {c:G, label:'Mulai / Selesai'},
-                {c:Y, label:'Ruangan / Layanan'},
-                {c:B, label:'Pemeriksaan'},
-                {c:O, label:'Darurat / Rujukan'},
-              ].map(l=>(
-                <div key={l.label} className="flex items-center gap-1.5">
-                  <div style={{width:18,height:12,background:l.c.fill,border:`1.5px solid ${l.c.stroke}`,borderRadius:2}}/>
-                  {l.label}
+
+            <div className="relative mx-auto flex h-64 w-full max-w-xs items-center justify-center sm:h-80 sm:max-w-sm">
+              <div className="absolute h-56 w-56 rounded-full bg-emerald-300/20 blur-2xl sm:h-72 sm:w-72" />
+              <div className="relative flex h-60 w-60 items-center justify-center rounded-full border border-white/20 bg-white/10 shadow-2xl backdrop-blur-sm sm:h-72 sm:w-72">
+                <div className="relative text-center">
+                  <img
+                    src="/puskesmas.png"
+                    alt="Puskesmas Sukamulya"
+                    className="h-56 w-56 rounded-full object-cover sm:h-72 sm:w-72"
+                  />
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-xl bg-white px-3 py-1.5 text-[10px] font-black tracking-wider text-emerald-800 shadow-lg sm:bottom-4 sm:px-5 sm:py-2 sm:text-xs sm:tracking-widest">PUSKESMAS SUKAMULYA</div>
                 </div>
-              ))}
-              <div className="flex items-center gap-1.5">
-                <div style={{width:12,height:12,background:Y.fill,border:`1.5px solid ${Y.stroke}`,transform:'rotate(45deg)'}}/>
-                Keputusan
               </div>
+              <div className="absolute -left-2 top-8 rounded-2xl bg-white p-3 text-2xl shadow-xl">🩺</div>
+              <div className="absolute -right-2 bottom-8 rounded-2xl bg-white p-3 text-2xl shadow-xl">❤️</div>
             </div>
-          </Reveal>
-          <Reveal dir="up" delay={200}>
-            <div className="mt-6 border border-emerald-200 bg-emerald-50 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div>
-                <p className="text-sm font-black text-gray-900 mb-1">Butuh bantuan navigasi layanan?</p>
-                <p className="text-xs text-gray-400">Petugas siap membantu mengarahkan Anda.</p>
-              </div>
-              <a href={puskesmasInfo.whatsappLink} target="_blank" rel="noreferrer"
-                className="shrink-0 text-xs font-bold bg-emerald-600 text-white px-5 py-2.5 hover:bg-emerald-700 transition-colors">
-                Hubungi via WhatsApp →
-              </a>
-            </div>
-          </Reveal>
+          </div>
         </div>
+
+        <div id="tahapan-pelayanan" className="scroll-mt-24 pt-16">
+          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <span className="text-xs font-black uppercase tracking-[0.2em] text-emerald-700">Panduan Kunjungan</span>
+              <h3 className="mt-2 text-2xl font-black text-gray-900 sm:text-3xl">Tahapan Pelayanan</h3>
+              <p className="mt-2 max-w-xl text-sm leading-relaxed text-gray-500">Berikut delapan tahapan yang perlu diketahui sebelum dan selama mendapatkan pelayanan kesehatan.</p>
+            </div>
+            <span className="w-fit rounded-full border border-emerald-100 bg-emerald-50 px-4 py-2 text-xs font-bold text-emerald-700">8 Tahap tersedia</span>
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {alurPelayananData.map((step, index) => <ServiceCard key={step.id} step={step} index={index} />)}
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <div className="text-center">
+            <span className="text-xs font-black uppercase tracking-[0.2em] text-emerald-700">Komitmen Kami</span>
+            <h3 className="mt-2 text-2xl font-black text-gray-900 sm:text-3xl">Kesehatan Anda, Prioritas Kami</h3>
+            <p className="mt-2 text-sm text-gray-500">Kami berkomitmen memberikan pelayanan terbaik.</p>
+          </div>
+          <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {[
+              ['😊', 'Ramah', 'Melayani dengan sikap santun'],
+              ['⏱️', 'Cepat', 'Proses pelayanan terarah'],
+              ['🎯', 'Tepat', 'Sesuai kebutuhan pasien'],
+              ['✓', 'Tuntas', 'Pelayanan sampai selesai'],
+            ].map(([icon, title, description]) => (
+              <div key={title} className="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-3xl">{icon}</div>
+                <h4 className="mt-4 font-black text-gray-900">{title}</h4>
+                <p className="mt-1 text-xs leading-relaxed text-gray-500">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-emerald-700">Informasi Pasien</span>
+          <h3 className="mt-2 text-2xl font-black text-gray-900">Persiapan Sebelum Berkunjung</h3>
+          <div className="mt-7 grid gap-5 sm:grid-cols-2">
+            {alurPelayananTips.map((tip) => <TipsCard key={tip.title} tip={tip} />)}
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col items-center justify-between gap-6 rounded-3xl border border-blue-100 bg-white p-6 shadow-sm sm:flex-row sm:p-8">
+          <div className="flex items-center gap-4">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-3xl">🏥</div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-blue-600">Informasi</p>
+              <h3 className="mt-1 text-xl font-black text-gray-900">Peserta JKN / BPJS Kesehatan</h3>
+              <p className="mt-1 text-sm text-gray-500">Siapkan identitas dan kartu kepesertaan Anda.</p>
+            </div>
+          </div>
+          <a href="https://www.bpjs-kesehatan.go.id/" target="_blank" rel="noreferrer" className="rounded-xl bg-blue-700 px-6 py-3 text-xs font-bold text-white transition hover:bg-blue-800">Informasi BPJS →</a>
+        </div>
+
+        <div id="kontak" className="mt-12 rounded-3xl bg-gradient-to-r from-emerald-800 to-teal-700 p-8 text-center text-white sm:p-12">
+          <div className="text-4xl">💚</div>
+          <h3 className="mt-4 text-2xl font-black sm:text-3xl">Kami Siap Membantu Anda</h3>
+          <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-emerald-100">Jangan ragu untuk menghubungi kami jika membutuhkan informasi mengenai pelayanan kesehatan.</p>
+          <a href="#kontak-utama" className="mt-6 inline-flex rounded-xl bg-white px-7 py-3 text-sm font-bold text-emerald-800 transition hover:bg-emerald-50">Informasi Kontak Puskesmas</a>
+        </div>
+          </div>
+        </section>
       </main>
-      <Footer onOpenEmergency={onOpenEmergency}/>
-      <EmergencyModal isOpen={isEmOpen} onClose={()=>setIsEmOpen(false)}/>
+
+      <Footer onOpenEmergency={onOpenEmergency} />
     </div>
   );
 }

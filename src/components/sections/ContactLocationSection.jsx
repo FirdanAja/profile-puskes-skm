@@ -49,7 +49,7 @@ export default function ContactLocationSection({ onOpenEmergency }) {
 
       {/* ── BAGIAN 1: Cakupan Wilayah + Map ── */}
       <div className="py-14 lg:py-16 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
             {/* Kiri — info wilayah */}
@@ -122,7 +122,7 @@ export default function ContactLocationSection({ onOpenEmergency }) {
 
       {/* ── BAGIAN 2: Kontak & Form Pengaduan ── */}
       <div className="py-14 lg:py-16 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
 
           <Reveal dir="up">
             <div className="mb-10">

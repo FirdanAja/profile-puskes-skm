@@ -21,7 +21,7 @@ function SpecBadge({ label }) {
 // Person silhouette SVG
 function PersonSVG({ colorClass = "text-emerald-600" }) {
   return (
-    <svg className={`w-14 h-14 ${colorClass}`} viewBox="0 0 80 80" fill="currentColor">
+    <svg className={`w-12 h-12 ${colorClass}`} viewBox="0 0 80 80" fill="currentColor">
       <circle cx="40" cy="22" r="16" />
       <ellipse cx="40" cy="68" rx="28" ry="20" />
     </svg>
@@ -33,7 +33,7 @@ export default function DoctorsSchedule() {
 
   return (
     <section id="jadwal-dokter" className="py-12 lg:py-14 bg-gray-50 border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
         
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
@@ -59,18 +59,26 @@ export default function DoctorsSchedule() {
           {displayDoctors.map((doc, idx) => (
             <div
               key={doc.id}
-              className="card-hover bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col"
+              className="card-hover min-h-[120px] h-[120px] bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-row"
             >
               {/* Avatar area */}
-              <div className={`${avatarColors[idx % avatarColors.length].split(' ')[0]} flex items-end justify-center pt-6 pb-0 min-h-[130px] relative`}>
-                {/* Simple person silhouette */}
-                <div className={`${avatarColors[idx % avatarColors.length]}`}>
-                  <PersonSVG colorClass={avatarColors[idx % avatarColors.length].split(' ')[1]} />
-                </div>
+              <div className="w-[72px] h-[120px] shrink-0 bg-white border-r border-gray-100 overflow-hidden flex items-end justify-center relative">
+                {doc.foto ? (
+                  <img
+                    src={doc.foto}
+                    alt={doc.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-[center_25%]"
+                  />
+                ) : (
+                  <div className={`w-full h-full flex items-end justify-center ${avatarColors[idx % avatarColors.length].split(' ')[0]}`}>
+                    <PersonSVG colorClass={avatarColors[idx % avatarColors.length].split(' ')[1]} />
+                  </div>
+                )}
               </div>
 
               {/* Info */}
-              <div className="p-4 flex-1 flex flex-col">
+              <div className="p-3 flex-1 min-w-0 flex flex-col justify-center">
                 <h3 className="font-bold text-sm text-gray-900 leading-snug">{doc.name}</h3>
                 <p className="text-[11px] text-emerald-600 font-semibold mt-0.5">{doc.role}</p>
                 <p className="text-[11px] text-gray-500 mt-1 leading-relaxed flex-1">{doc.specialty}</p>

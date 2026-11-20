@@ -1,169 +1,134 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CheckCircleIcon } from '../common/Icons';
 import { alurPelayananData, alurPelayananTips } from '../../data/alurPelayananData';
 
-const ArrowRightIcon = ({ className = "w-5 h-5" }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-  </svg>
-);
+function AlurCard({ step }) {
+  const warm = step.id >= 5;
 
-const ChevronDownIcon = ({ className = "w-5 h-5" }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-  </svg>
-);
-
-function AlurCard({ step, isLast, isExpanded, onToggle }) {
   return (
-    <div className="relative">
-      {/* Vertical line connector */}
-      {!isLast && (
-        <div className="absolute left-8 top-24 w-1 h-12 bg-gradient-to-b from-emerald-400 to-emerald-200 hidden sm:block"></div>
-      )}
-
-      <div className="flex gap-4 sm:gap-6">
-        {/* Circle number */}
-        <div className="flex flex-col items-center">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shrink-0">
-            {step.icon}
+    <article className="h-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+      <div className={`h-1.5 ${warm ? 'bg-amber-500' : 'bg-emerald-600'}`} />
+      <div className="p-3 sm:p-4">
+        <div className="flex items-start gap-3">
+          <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-lg font-black text-white shadow-sm ${warm ? 'bg-amber-500' : 'bg-emerald-600'}`}>
+            {step.id}
+          </div>
+          <div className="min-w-0">
+            <h3 className="text-sm font-black leading-tight text-gray-900 sm:text-base">{step.nama}</h3>
+            <p className="mt-1 text-[10px] leading-relaxed text-gray-500 sm:text-xs">{step.deskripsi}</p>
           </div>
         </div>
-
-        {/* Card content */}
-        <div className="flex-1 pb-8">
-          <button
-            onClick={onToggle}
-            className="w-full text-left bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-all p-4 sm:p-5 group"
-          >
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex-1 min-w-0">
-                <h3 className="font-bold text-base sm:text-lg text-gray-900 mb-1">
-                  {step.nama}
-                </h3>
-                <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
-                  {step.deskripsi}
-                </p>
-              </div>
-              <ChevronDownIcon className={`w-5 h-5 text-emerald-600 shrink-0 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+        <div className="mt-3 space-y-1.5 border-t border-gray-100 pt-3">
+          {step.detail.map((item, index) => (
+            <div key={index} className="flex items-start gap-1.5 text-[10px] leading-relaxed text-gray-600 sm:text-[11px]">
+              <CheckCircleIcon className="mt-0.5 h-3 w-3 shrink-0 text-emerald-500" />
+              <span>{item}</span>
             </div>
-
-            {/* Expanded content */}
-            {isExpanded && (
-              <div className="mt-4 pt-4 border-t border-gray-200 space-y-2">
-                {step.detail.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-gray-700">
-                    <CheckCircleIcon className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </button>
+          ))}
         </div>
       </div>
-    </div>
+    </article>
+  );
+}
+
+function FlowArrow({ direction = 'right' }) {
+  return (
+    <span className={`absolute z-10 hidden h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-white shadow-md md:flex ${
+      direction === 'left'
+        ? '-left-3 top-1/2 -translate-y-1/2'
+        : '-right-3 top-1/2 -translate-y-1/2'
+    }`}>
+      {direction === 'left' ? '←' : '→'}
+    </span>
   );
 }
 
 function TipsCard({ tip }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
   return (
-    <div className="bg-white rounded-xl shadow-md border border-gray-200 p-5 sm:p-6">
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full text-left flex items-start justify-between gap-3 mb-4"
-      >
-        <h3 className="font-bold text-base sm:text-lg text-gray-900">
-          {tip.title}
-        </h3>
-        <ChevronDownIcon className={`w-5 h-5 text-emerald-600 shrink-0 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
-      </button>
-
-      {isExpanded && (
-        <ul className="space-y-2">
-          {tip.items.map((item, idx) => (
-            <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-gray-700">
-              <CheckCircleIcon className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+      <div className="mb-4 flex items-center gap-3">
+        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-100 text-sm font-black text-emerald-700">
+          {tip.title.charAt(0)}
+        </span>
+        <h3 className="text-base font-black text-gray-900">{tip.title}</h3>
+      </div>
+      <ul className="space-y-2">
+        {tip.items.map((item, index) => (
+          <li key={index} className="flex items-start gap-2 text-xs leading-relaxed text-gray-600">
+            <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
 export default function AlurPelayananSection() {
-  const [expandedStep, setExpandedStep] = useState(null);
+  const flyerSteps = [
+    ...alurPelayananData.slice(0, 4),
+    ...alurPelayananData.slice(4).reverse(),
+  ];
 
   return (
-    <section id="alur-pelayanan" className="py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white border-t border-gray-100">
-      <div className="max-w-5xl mx-auto px-5">
-
-        {/* Section header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold mb-3">
-            Panduan Pelayanan
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight">Alur Pelayanan</h2>
-          <p className="text-sm text-gray-500 mt-2 max-w-xl mx-auto">
-            Tahapan pelayanan kesehatan dari pendaftaran hingga follow-up di Puskesmas Sukamulya
+    <section id="alur-pelayanan" className="border-t border-gray-100 bg-[#f7f5ee] py-10 sm:py-14">
+      <div className="mx-auto max-w-6xl px-3 sm:px-6">
+        <div className="relative mb-7 overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-700 via-teal-600 to-sky-500 px-5 py-7 text-center text-white shadow-lg sm:mb-10 sm:px-10 sm:py-10">
+          <div className="absolute -left-8 -top-12 h-32 w-32 rounded-full bg-white/10" />
+          <div className="absolute -bottom-16 -right-6 h-40 w-40 rounded-full bg-white/10" />
+          <p className="relative text-[10px] font-black uppercase tracking-[0.25em] text-emerald-100">Panduan Pasien</p>
+          <h2 className="relative mt-2 text-3xl font-black leading-tight sm:text-5xl">
+            Alur Pelayanan<br className="sm:hidden" /> di Puskesmas
+          </h2>
+          <p className="relative mx-auto mt-3 max-w-xl text-xs text-emerald-50 sm:text-sm">
+            Melayani dengan ramah, cepat, tepat, dan tuntas
           </p>
+          <div className="relative mx-auto mt-5 inline-flex rounded-full bg-white/20 px-5 py-2 text-xs font-bold backdrop-blur-sm">
+            ♥ Kami siap melayani Anda dengan sepenuh hati
+          </div>
         </div>
 
-        {/* Alur Steps */}
-        <div className="mb-12">
-          <div className="space-y-0">
-            {alurPelayananData.map((step, idx) => (
-              <AlurCard
-                key={step.id}
-                step={step}
-                isLast={idx === alurPelayananData.length - 1}
-                isExpanded={expandedStep === step.id}
-                onToggle={() => setExpandedStep(expandedStep === step.id ? null : step.id)}
-              />
+        <div className="overflow-hidden rounded-2xl border border-emerald-200 bg-white p-3 shadow-xl shadow-gray-900/5 sm:p-6">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-emerald-100 pb-5">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-700">Prosedur kunjungan</p>
+              <p className="mt-1 text-xs text-gray-500 sm:text-sm">Ikuti alur dari kiri ke kanan, lalu kembali ke kiri</p>
+            </div>
+            <span className="rounded-full bg-emerald-50 px-3 py-1.5 text-[10px] font-bold text-emerald-700">8 Tahap Pelayanan</span>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-3">
+            {flyerSteps.map((step, index) => (
+              <div key={step.id} className="relative">
+                <AlurCard step={step} />
+                {index < 3 && <FlowArrow />}
+                {index === 4 && <FlowArrow direction="left" />}
+              </div>
             ))}
           </div>
         </div>
 
-        {/* Tips Section */}
-        <div>
-          <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-5 pb-3 border-b-2 border-emerald-200 inline-block">
-            Informasi Penting
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {alurPelayananTips.map((tip, idx) => (
-              <TipsCard key={idx} tip={tip} />
-            ))}
+        <div className="mt-10">
+          <div className="mb-5">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600">Sebelum berkunjung</p>
+            <h3 className="mt-1 text-xl font-black text-gray-900">Informasi Penting</h3>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {alurPelayananTips.map((tip) => <TipsCard key={tip.title} tip={tip} />)}
           </div>
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-12 p-6 sm:p-8 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl border border-emerald-200 text-center">
-          <h3 className="font-bold text-gray-900 mb-2 text-base sm:text-lg">
-            Pertanyaan Lebih Lanjut?
-          </h3>
-          <p className="text-xs sm:text-sm text-gray-600 mb-4">
-            Hubungi kami melalui telepon atau kunjungi langsung puskesmas
+        <div className="mt-10 overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-700 to-teal-700 p-6 text-center text-white shadow-lg shadow-emerald-900/10 sm:p-8">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-100">Butuh bantuan?</p>
+          <h3 className="mt-2 text-lg font-black sm:text-xl">Kami siap membantu Anda</h3>
+          <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-emerald-50 sm:text-sm">
+            Hubungi kami melalui telepon atau kunjungi langsung Puskesmas Sukamulya.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href="tel:+622711234567"
-              className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm rounded-lg transition-colors"
-            >
-              📞 Hubungi Kami
-            </a>
-            <a
-              href="#kontak"
-              className="px-6 py-2.5 bg-white border border-emerald-600 text-emerald-600 hover:bg-emerald-50 font-semibold text-xs sm:text-sm rounded-lg transition-colors"
-            >
-              📍 Lokasi Puskesmas
-            </a>
+          <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a href="tel:+622711234567" className="w-full rounded-xl bg-white px-6 py-2.5 text-xs font-bold text-emerald-700 transition hover:bg-emerald-50 sm:w-auto">Hubungi Kami</a>
+            <a href="#kontak" className="w-full rounded-xl border border-white/50 px-6 py-2.5 text-xs font-bold text-white transition hover:bg-white/10 sm:w-auto">Lokasi Puskesmas</a>
           </div>
         </div>
-
       </div>
     </section>
   );

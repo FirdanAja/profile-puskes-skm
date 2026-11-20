@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
-import { CheckCircleIcon } from '../common/Icons';
-import { standarPelayananData, standarPelayananInfo } from '../../data/standarPelayananData';
+import { standarPelayananData } from '../../data/standarPelayananData';
 
 const ChevronDownIcon = ({ className = "w-5 h-5" }) => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
   </svg>
 );
-
-const warnaMap = {
-  emerald: "bg-emerald-100 border-emerald-300 text-emerald-900",
-  pink: "bg-pink-100 border-pink-300 text-pink-900",
-  blue: "bg-blue-100 border-blue-300 text-blue-900",
-  amber: "bg-amber-100 border-amber-300 text-amber-900",
-  purple: "bg-purple-100 border-purple-300 text-purple-900"
-};
 
 const warnaHeaderMap = {
   emerald: "bg-emerald-600",
@@ -28,20 +19,7 @@ function LayananItem({ layanan }) {
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow">
       <h4 className="font-bold text-sm text-gray-900 mb-3">{layanan.nama}</h4>
-      <div className="space-y-2 text-xs text-gray-600">
-        <div className="flex items-start gap-2">
-          <span className="font-semibold text-gray-700 min-w-fit">Target:</span>
-          <span>{layanan.target}</span>
-        </div>
-        <div className="flex items-start gap-2">
-          <span className="font-semibold text-gray-700 min-w-fit">Waktu:</span>
-          <span>{layanan.waktu}</span>
-        </div>
-        <div className="flex items-start gap-2">
-          <span className="font-semibold text-gray-700 min-w-fit">Biaya:</span>
-          <span>{layanan.biaya}</span>
-        </div>
-      </div>
+      <p className="text-xs text-gray-600 leading-relaxed">{layanan.uraian}</p>
     </div>
   );
 }
@@ -78,35 +56,6 @@ function KlasterCard({ klaster, isExpanded, onToggle }) {
   );
 }
 
-function InfoBox({ info }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  return (
-    <div className="bg-white rounded-xl shadow-md border border-gray-200 p-5 sm:p-6">
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full text-left flex items-start justify-between gap-3"
-      >
-        <h3 className="font-bold text-base sm:text-lg text-gray-900">
-          {info.title}
-        </h3>
-        <ChevronDownIcon className={`w-5 h-5 text-gray-600 shrink-0 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
-      </button>
-
-      {isExpanded && (
-        <ul className="mt-4 space-y-2">
-          {info.items.map((item, idx) => (
-            <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-gray-700">
-              <CheckCircleIcon className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
-
 export default function StandarPelayananSection() {
   const [expandedKlaster, setExpandedKlaster] = useState(1);
 
@@ -135,37 +84,6 @@ export default function StandarPelayananSection() {
               onToggle={() => setExpandedKlaster(expandedKlaster === klaster.id ? null : klaster.id)}
             />
           ))}
-        </div>
-
-        {/* Info Section */}
-        <div>
-          <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-6 pb-3 border-b-2 border-emerald-200 inline-block">
-            Informasi Penting
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {standarPelayananInfo.map((info, idx) => (
-              <InfoBox key={idx} info={info} />
-            ))}
-          </div>
-        </div>
-
-        {/* Legend */}
-        <div className="mt-12 p-6 sm:p-8 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl border border-emerald-200">
-          <h3 className="font-bold text-gray-900 mb-4 text-base sm:text-lg">Penjelasan Standar</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm text-gray-700">
-            <div className="flex gap-2">
-              <span className="font-semibold min-w-fit">Target:</span>
-              <span>Indikator keberhasilan pelayanan</span>
-            </div>
-            <div className="flex gap-2">
-              <span className="font-semibold min-w-fit">Waktu:</span>
-              <span>Jadwal atau durasi pelayanan</span>
-            </div>
-            <div className="flex gap-2">
-              <span className="font-semibold min-w-fit">Biaya:</span>
-              <span>Tarif atau mekanisme pembayaran</span>
-            </div>
-          </div>
         </div>
 
       </div>

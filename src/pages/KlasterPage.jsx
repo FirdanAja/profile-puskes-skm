@@ -3,6 +3,7 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import PageHeader from '../components/layout/PageHeader';
 import { klasterList } from '../data/klasterData';
+import { standarPelayananData } from '../data/standarPelayananData';
 import { puskesmasInfo } from '../data/puskesmasData';
 import EmergencyModal from '../components/modals/EmergencyModal';
 import { useState } from 'react';
@@ -13,13 +14,15 @@ const colorMap = {
   pink:    { badge: 'bg-pink-100 text-pink-700',       accent: 'border-l-4 border-pink-500',    dot: 'bg-pink-500',    header: 'bg-pink-600' },
   blue:    { badge: 'bg-blue-100 text-blue-700',       accent: 'border-l-4 border-blue-500',    dot: 'bg-blue-500',    header: 'bg-blue-600' },
   amber:   { badge: 'bg-amber-100 text-amber-700',     accent: 'border-l-4 border-amber-500',   dot: 'bg-amber-500',   header: 'bg-amber-600' },
+  purple:  { badge: 'bg-purple-100 text-purple-700',   accent: 'border-l-4 border-purple-500', dot: 'bg-purple-500', header: 'bg-purple-600' },
   violet:  { badge: 'bg-violet-100 text-violet-700',   accent: 'border-l-4 border-violet-500',  dot: 'bg-violet-500',  header: 'bg-violet-600' },
 };
 
 export default function KlasterPage({ klasterId, onOpenEmergency }) {
   const [isEmergencyOpen, setIsEmergencyOpen] = useState(false);
-  const klaster = klasterList.find((k) => k.slug === klasterId) || klasterList[0];
-  const others = klasterList.filter((k) => k.slug !== klaster.slug);
+  const selectedKlasterIndex = klasterList.findIndex((k) => k.slug === klasterId);
+  const klaster = standarPelayananData[selectedKlasterIndex] || standarPelayananData[0];
+  const others = klasterList.filter((k) => k.slug !== klasterId);
   const color = colorMap[klaster.warna] || colorMap.emerald;
 
   return (
@@ -34,16 +37,6 @@ export default function KlasterPage({ klasterId, onOpenEmergency }) {
           { label: 'Layanan', href: '#layanan' },
           { label: 'Standar Pelayanan', href: '#' },
           { label: klaster.nama, href: '#' },
-        ]}
-        meta={[
-          {
-            icon: (
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-            ),
-            text: `PJ: ${klaster.pj}`,
-          },
         ]}
       />
 
@@ -87,11 +80,7 @@ export default function KlasterPage({ klasterId, onOpenEmergency }) {
                         {/* Konten */}
                         <div className="flex-1 border border-gray-200 hover:border-gray-300 transition-colors p-5 mb-6">
                           <h3 className="text-sm font-black text-gray-900 mb-1">{item.nama}</h3>
-                          <p className="text-xs text-gray-500 leading-relaxed mb-2">{item.desc}</p>
-                          <div className="flex items-center gap-1.5 text-xs text-gray-400">
-                            <span className={`w-1.5 h-1.5 rounded-full ${color.dot}`} />
-                            <span>Penanggung jawab: <strong className="text-gray-600">{item.penanggung}</strong></span>
-                          </div>
+                          <p className="text-xs text-gray-500 leading-relaxed mb-2">{item.uraian}</p>
                         </div>
                       </div>
                     </Reveal>
@@ -138,7 +127,6 @@ export default function KlasterPage({ klasterId, onOpenEmergency }) {
                             <p className="text-sm font-bold text-gray-800 group-hover:text-emerald-600 transition-colors leading-snug">
                               {k.nama}
                             </p>
-                            <p className="text-[11px] text-gray-400 mt-0.5">PJ: {k.pj}</p>
                           </div>
                         </a>
                       );

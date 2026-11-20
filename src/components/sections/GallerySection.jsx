@@ -31,7 +31,7 @@ export default function GallerySection() {
 
   return (
     <section id="galeri" className="py-14 lg:py-16 bg-gray-100">
-      <div className="max-w-7xl mx-auto px-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
 
         {/* Header */}
         <Reveal dir="up">
